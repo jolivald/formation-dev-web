@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Mon serveur</title>
@@ -47,9 +47,27 @@
     </div>
     
     <blockquote class="blockquote text-center">
-      <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+      <p class="mb-0">
+        DOCTYPEs are required for legacy reasons. When omitted, browsers tend to use a
+        different rendering mode that is incompatible with some specifications. Including the DOCTYPE in a
+        document ensures that the browser makes a best-effort attempt at following the relevant
+        specifications.
+      </p>
+      <footer class="blockquote-footer">
+        Last Updated 13 March 2020 <cite>HTML Living Standard</cite>
+      </footer>
     </blockquote>
+
+
+    <p>A DOCTYPE must consist of the following components, in this order:</p>
+    <ol>
+      <li>A string that is an <a id="the-doctype:ascii-case-insensitive" href="https://infra.spec.whatwg.org/#ascii-case-insensitive" data-x-internal="ascii-case-insensitive">ASCII case-insensitive</a> match for the string "<code>&lt;!DOCTYPE</code>".</li>
+      <li>One or more <a id="the-doctype:space-characters" href="https://infra.spec.whatwg.org/#ascii-whitespace" data-x-internal="space-characters">ASCII whitespace</a>.</li>
+      <li>A string that is an <a id="the-doctype:ascii-case-insensitive-2" href="https://infra.spec.whatwg.org/#ascii-case-insensitive" data-x-internal="ascii-case-insensitive">ASCII case-insensitive</a> match for the string "<code>html</code>".</li>
+      <li>Optionally, a <a href="#doctype-legacy-string" id="the-doctype:doctype-legacy-string">DOCTYPE legacy string</a>.</li><li>Zero or more <a id="the-doctype:space-characters-2" href="https://infra.spec.whatwg.org/#ascii-whitespace" data-x-internal="space-characters">ASCII whitespace</a>.</li>
+      <li>A U+003E GREATER-THAN SIGN character (&gt;).</li>
+    </ol>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
