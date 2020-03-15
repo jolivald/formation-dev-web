@@ -4,67 +4,94 @@
   <meta charset="utf8" />
   <title>Exercice 12 mars</title>
   <style type="text/css">
-
-header {
-  height: 150px;
-  margin: 10px 20px;
-  background: red;
-}
-header img {
-  float: left;
-  margin: 0 20px 0 0;
+/* mise en page */
+html, body {
+  height: 100%;
+  margin: 0;
 }
 main {
-  margin: 10px 20px;
+  min-height: 100%;
+  margin: 0 20px;
 }
-main > *, footer {
-  border: 1px solid gray;
-  margin: 0 0 10px;
+
+/* conteneur flexbox vertical */
+.vbox {
+  display: flex;
+  flex-flow: column nowrap;
 }
-main > section {
-  margin: 0 20px 10px 0 ;
-  float: left;
-  width: 25%;
+/* tous les enfants directs de vbox */
+.vbox > * {
+  margin-bottom: 20px;
 }
-footer {
-  clear: left;
-  /*margin: 0 20px;*/
-  text-align: center;
+/* le dernier enfant direct de vbox */
+.vbox > *:last-child {
+  margin-bottom: 0;
+}
+
+/* conteneur flexbox horizontal */
+.hbox {
+  display: flex;
+  flex-flow: row wrap;
+}
+/* tous les enfants directs de hbox */
+.hbox > * {
+  margin-right: 20px;
+}
+/* le dernier enfant direct de hbox */
+.hbox > *:last-child {
+  margin-right: 0;
+}
+
+/* marquer un enfant direct de hbox ou vbox avec la classe "fluid"
+   permet de l'agrandir pour occuper l'espace disponible dans le conteneur */
+.hbox > .fluid,
+.vbox > .fluid {
+  flex-grow: 1;
 }
 
   </style>
 </head>
 <body>
 
-  <main>
+  <!-- vertical -->
+  <main class="vbox">
 
-    <header>
+    <!-- horizontal -->
+    <header class="hbox">
       <img src="https://via.placeholder.com/150" alt="placeholder" />
-      <h1>Exercice 12 mars</h1>
+      <div class="fluid">
+        <h1>Exercice 12 mars</h1>
+        <p>Lorem ipsum</p>
+      </div>
     </header>
 
-    <article>
+    <article class="fluid">
       <h2>Paragraphe</h2>
       <p>Lorem ipsum...</p>
     </article>
 
-    <section>
-      <h2>Liste numérotée</h2>
-      <ol>
-        <li>uno</li>
-        <li>dos</li>
-        <li>tres</li>
-      </ol>
-    </section>
-    
-    <section>
-      <h2>Liste à puces</h2>
-      <ul>
-        <li>one</li>
-        <li>two</li>
-        <li>three</li>
-      </ul>
-    </section>
+    <!-- horizontal flexbox -->
+    <aside class="fluid hbox">
+
+      <section class="fluid">
+        <h2>Liste numérotée</h2>
+        <ol>
+          <li>uno</li>
+          <li>dos</li>
+          <li>tres</li>
+        </ol>
+      </section>
+      
+      <section class="fluid">
+        <h2>Liste à puces</h2>
+        <ul>
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+        </ul>
+      </section>
+
+    </aside>
 
     <footer>
       <p>Copyleft © pied de page pointure 44 2/3</p>
