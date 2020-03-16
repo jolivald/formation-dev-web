@@ -33,6 +33,15 @@ html, body {
   margin: 0;
 }
 
+main.vbox {
+  min-height: 100%;
+}
+
+main.vbox nav {
+  margin: 0;
+}
+
+
 /* liste utilisé comme barre de navigation */
 ul.hbox {
   /* enlève le style par défaut */
@@ -73,4 +82,14 @@ li.fluid:first-child a {
   /* cosmétique pour coller à l'exemple */
   font-weight: bold;
   color: red;
+}
+
+/* classe "active" pour différencier le lien actuellement visité */
+li.fluid a.active {
+  color: red;
+}
+
+/* cosmétique pour coller à l'exemple */
+main article {
+  background: #FFF2CC;
 }
