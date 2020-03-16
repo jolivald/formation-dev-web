@@ -1,0 +1,96 @@
+/* ---8<--- on récupère le code du mini projet n°1 ---8<--- */
+
+.vbox {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.vbox > * {
+  margin-bottom: 20px;
+}
+.vbox > *:last-child {
+  margin-bottom: 0;
+}
+.hbox {
+  display: flex;
+  flex-flow: row wrap;
+}
+.hbox > * {
+  margin-right: 20px;
+}
+.hbox > *:last-child {
+  margin-right: 0;
+}
+.hbox > .fluid,
+.vbox > .fluid {
+  flex-grow: 1;
+}
+
+/* ---8<--- style propre au mini projet n°2 ---8<--- */
+
+/* pleine page sans bordures */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+main.vbox {
+  min-height: 100%;
+}
+
+main.vbox nav {
+  margin: 0;
+}
+
+
+/* liste utilisé comme barre de navigation */
+ul.hbox {
+  /* enlève le style par défaut */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  /* précise la configuration de hbox */
+  justify-content: center;
+  align-items: center;
+
+  /* cosmétique pour coller à l'exemple */
+  background: #6D9EEB;
+  border: 1px solid #000;
+}
+
+/* enlève le style part défaut des éléments de liste */
+li.fluid {
+  margin: 0;
+}
+
+/* les liens de la barre de navigation */
+li.fluid a {
+  /* enlève le style par défaut */
+  color: #000;
+  text-decoration: none;
+  /* aggrandi la zone cliquable  */
+  display: block;
+  padding: 1em 0;
+  text-align: center;
+}
+
+/* le premier lien dans la barre */
+li.fluid:first-child a {
+  /* aligne le texte à gauche en laissant un espace */
+  text-align: left;
+  padding-left: 2em;
+  /* cosmétique pour coller à l'exemple */
+  font-weight: bold;
+  color: red;
+}
+
+/* classe "active" pour différencier le lien actuellement visité */
+li.fluid a.active {
+  color: red;
+}
+
+/* cosmétique pour coller à l'exemple */
+main article {
+  padding: 0 4em;
+  background: #FFF2CC;
+}
