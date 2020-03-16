@@ -1,6 +1,6 @@
 # Formation développeur web & web mobile
 
-Ce dépôt contient les exercices réalisé durant la formation.
+Ce dépôt contient les exercices réalisés durant la formation.
 
 
 ## Liste des exercices
