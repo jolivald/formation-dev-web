@@ -5,6 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exercice 16 mars</title>
   <link rel="stylesheet" href="style.css">
+  <style type="text/css">
+
+/* style générique pour toutes le formes */
+.shape {
+  float: left;
+  height: 150px;
+  width: 150px;
+  margin: 2em 2em;
+  border: 1px solid #000;
+}
+
+/* une déclaration par forme à afficher */
+
+#demo-1 {
+  border-top-right-radius: 2em;
+  background: #CFE2F3;
+}
+
+#demo-2 {
+  border-radius: 50%;
+  background: #f00;
+}
+
+#demo-3 {
+  transform: skewX(-15deg);
+  background: #CFE2F3;
+}
+
+#demo-4 {
+  transform: rotate(15deg);
+  width: 300px;
+  background: #38761D;
+  clear: left;
+}
+
+#demo-5 {
+  border-radius: 2em;
+  width: 300px;
+  background: #00f;
+  clear: left;
+}
+
+#demo-6 {
+  width: 300px;
+  background: #ff0;
+}
+
+  </style>
 </head>
 <body>
   
@@ -20,7 +68,14 @@
     </nav>
     
     <article class="fluid">
-      
+
+      <div id="demo-1" class="shape"></div>
+      <div id="demo-2" class="shape"></div>
+      <div id="demo-3" class="shape"></div>
+      <div id="demo-4" class="shape"></div>
+      <div id="demo-5" class="shape"></div>
+      <div id="demo-6" class="shape"></div>
+
     </article>
   
   </main>
