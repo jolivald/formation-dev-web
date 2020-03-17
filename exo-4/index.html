@@ -7,12 +7,19 @@
   <link rel="stylesheet" href="style.css">
   <style type="text/css">
 
+/* mise en forme du texte */
+article section {
+  margin: 2em 0;
+  padding: 0 1em 1em;
+  border: 2px dashed #000;
+}
+
 /* style générique pour toutes le formes */
 .shape {
   float: left;
-  height: 150px;
-  width: 150px;
-  margin: 2em 2em;
+  height: 100px;
+  width: 100px;
+  margin: 1em 1em;
   border: 1px solid #000;
 }
 
@@ -29,26 +36,28 @@
 }
 
 #demo-3 {
+  width: 80px;
   transform: skewX(-15deg);
   background: #CFE2F3;
 }
 
 #demo-4 {
   transform: rotate(15deg);
-  width: 300px;
+  width: 200px;
+  margin-left: 20%;
   background: #38761D;
   clear: left;
 }
 
 #demo-5 {
   border-radius: 2em;
-  width: 300px;
+  width: 200px;
   background: #00f;
   clear: left;
 }
 
 #demo-6 {
-  width: 300px;
+  width: 200px;
   background: #ff0;
 }
 
@@ -68,8 +77,13 @@
     </nav>
     
     <article class="fluid">
-      <h3>La balise a: Les liens hypertexte</h3>
-      
+
+      <section>
+        <h3>La balise &lt;a&gt;: Les liens hypertexte</h3>
+        <p>C'est avec l'attribut href que l'on indique lechemin vers le fichier voulu.</p>
+        <pre>&lt;a href="chemin_vers_fichier"&gt;intitulé du lien&lt;/a&gt;</pre>
+      </section>
+
       <div id="demo-1" class="shape"></div>
       <div id="demo-2" class="shape"></div>
       <div id="demo-3" class="shape"></div>
