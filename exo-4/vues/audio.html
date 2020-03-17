@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exercice 16 mars</title>
   <link rel="stylesheet" href="../style.css">
+  <style type="text/css">
+
+article audio {
+  width: 60%;
+  margin: 2em 0 0 20%;
+}
+
+  </style>
 </head>
 <body>
   
@@ -20,8 +28,19 @@
     </nav>
     
     <article class="fluid">
-
-      <h3>La balise audio: Le son sur une page html</h3>
+      <section>
+        <h3>La balise &lt;audio&gt;: Le son sur une page html</h3>
+        <p>C'est avec l'attribut src que l'on indique le chemin vers le fichier voulu.</p>
+        <pre>
+&lt;audio controls&gt;
+  &lt;source src="monAudio.mp3" type="audio/mpeg"&gt;
+  &lt;source src="monAudio.ogg" type="audio/ogg"&gt;
+  &lt;p&gt;Votre navigateur ne prend pas en charge l'audio HTML.
+  Voici un &lt;a href='myAudio.mp4'&gt;lien vers le fichier
+  audio&lt;/a&gt; pour le télécharger.&lt;/p&gt;
+&lt;/audio&gt;
+        </pre>
+      </section>
 
       <audio controls>
         <source src="../public/audios/hyper-street-fighter-ii-music-guile-stage.mp3" type="audio/mpeg">
