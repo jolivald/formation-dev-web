@@ -7,9 +7,16 @@
   <link rel="stylesheet" href="style.css">
   <style type="text/css">
 
+/* style pour les conteneurs de formes */
+.shape-group {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
 /* style générique pour toutes le formes */
 .shape {
-  float: left;
   height: 100px;
   width: 100px;
   margin: 1em 1em;
@@ -37,7 +44,6 @@
 #demo-4 {
   transform: rotate(15deg);
   width: 200px;
-  margin-left: 20%;
   background: #38761D;
   clear: left;
 }
@@ -77,12 +83,20 @@
         <pre>&lt;a href="chemin_vers_fichier"&gt;intitulé du lien&lt;/a&gt;</pre>
       </section>
 
-      <div id="demo-1" class="shape"></div>
-      <div id="demo-2" class="shape"></div>
-      <div id="demo-3" class="shape"></div>
-      <div id="demo-4" class="shape"></div>
-      <div id="demo-5" class="shape"></div>
-      <div id="demo-6" class="shape"></div>
+      <div class="shape-group">
+        <div id="demo-1" class="shape"></div>
+        <div id="demo-2" class="shape"></div>
+        <div id="demo-3" class="shape"></div>
+      </div>
+
+      <div class="shape-group">
+        <div id="demo-4" class="shape"></div>
+      </div>
+
+      <div class="shape-group">
+        <div id="demo-5" class="shape"></div>
+        <div id="demo-6" class="shape"></div>
+      </div>
 
     </article>
   
