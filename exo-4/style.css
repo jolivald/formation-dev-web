@@ -94,3 +94,10 @@ main article {
   padding: 0 4em;
   background: #FFF2CC;
 }
+
+/* mise en forme du texte */
+article section {
+  margin: 2em 0;
+  padding: 0 1em 1em;
+  border: 2px dashed #000;
+}
