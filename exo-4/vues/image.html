@@ -7,15 +7,20 @@
   <link rel="stylesheet" href="../style.css">
   <style type="text/css">
 
+/* cosmétique pour coller à l'exemple */
+article section {
+  border-style: solid;
+}
+
 /* style pour le conteneur d'images */
-#image-group {
+.image-group {
   display: flex;
   flex-flow: row nowrap;
-  align-items: center;
+  align-items: end;
 }
 
 /* style générique pour les images */
-#image-group img {
+.image-group img {
   max-width: 100%;
   height: auto;
 }
@@ -26,7 +31,6 @@
 }
 #fight {
   margin-left: -4em;
-  align-self: end;
 }
 
   </style>
@@ -44,7 +48,7 @@
       </ul>
     </nav>
     
-    <article class="fluid">
+    <article class="fluid vbox">
       
       <section>
         <h3>La balise img: L'image sur une page html</h3>
@@ -56,7 +60,7 @@
         </pre>
       </section>
 
-      <div id="image-group">
+      <div class="image-group fluid">
         <img id="ryu"     src="../public/images/Art_Ryu_Ultimate.png" alt="Personage Ryu">
         <img id="fight"   src="../public/images/178-1784143_photo-street-fighter-fight-png.png" alt="Texte fight">
         <img id="chun-li" src="../public/images/unnamed.png" alt="Personage Chun-li">
