@@ -9,3 +9,4 @@ Ce dépôt contient les exercices réalisés durant la formation.
  2. [Cercle carré triangle](exo-2)
  3. [Bootstrap & navigation](exo-3)
  4. [Mini project n°2](exo-4)
+ 5. [Animation CSS](exo-5)
