@@ -6,7 +6,7 @@
   <title>Exercice 17 mars</title>
   <style type="text/css">
 
-/* défini les étapes de l'animation */
+/* étapes de l'animation couleur */
 @keyframes rainbow-background {
   0%   { background: red; }
   15%  { background: orange; }
@@ -18,22 +18,85 @@
   100% { background: palevioletred;}
 }
 
-/* utilise une classe pour assigner l'animation */
-.rainbow-bg {
-  animation: rainbow-background 5s infinite alternate;
+/* étapes de l'animation rotation */
+@keyframes cube-rotation {
+    0%   {  transform: rotateX(-22deg) rotateY(-38deg)  rotateZ(0deg);  }
+    50%  {  transform: rotateX(-22deg) rotateY(-238deg) rotateZ(0deg); }
+    100% {  transform: rotateX(-22deg) rotateY(-398deg) rotateZ(0deg); }
 }
 
-/* un peu de mise en forme pour l'aperçu */
-div {
-  height: 150px;
+/* style du conteneur 3d */
+main {
+  width: 300px;
+  height: 300px;
+  perspective: 700px;
+  margin: 100px auto;
+}
+
+/* style du cube */
+#cube {
+  position: relative;
   width: 150px;
+  height: 150px;
+  transform-style: preserve-3d;
+  transform: rotateY(35deg) rotatex(-38deg);
+  animation: cube-rotation 5s infinite;
+}
+
+/* toutes les faces du cube */
+#cube > div {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid black;
+  animation: rainbow-background 6s infinite alternate;
+}
+
+/* styles spécifiques à chaques faces */
+#cube > div:nth-child(1){
+  transform: translateZ(75px);
+  animation-delay: 0s;
+}
+#cube > div:nth-child(2){
+  transform: rotateX(180deg) translateZ(75px);
+  animation-delay: -1s;
+}
+#cube > div:nth-child(3){
+  transform: rotateY(-90deg) translateZ(75px);
+  animation-delay: -2s;
+}
+#cube > div:nth-child(4){
+  transform: rotateY(90deg) translateZ(75px);
+  animation-delay: -3s;
+}
+#cube > div:nth-child(5){
+  transform: rotateX(90deg) translateZ(75px);
+  animation-delay: -4s;
+}
+#cube > div:nth-child(6){
+  transform: rotateX(-90deg) translateZ(75px);
+  transition-delay: -5s;
 }
 
   </style>
 </head>
 <body>
   
-  <div class="rainbow-bg"></div>
+  <main>
+    
+    <div id="cube">
+
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+    </div>
+
+  </main>
 
 </body>
 </html>
