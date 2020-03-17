@@ -6,11 +6,34 @@
   <title>Exercice 17 mars</title>
   <style type="text/css">
 
+/* défini les étapes de l'animation */
+@keyframes rainbow-background {
+  0%   { background: red; }
+  15%  { background: orange; }
+  30%  { background: yellow; }
+  45%  { background: green; }
+  60%  { background: royalblue; }
+  75%  { background: blue; }
+  90%  { background: indigo; }
+  100% { background: palevioletred;}
+}
+
+/* utilise une classe pour assigner l'animation */
+.rainbow-bg {
+  animation: rainbow-background 5s infinite alternate;
+}
+
+/* un peu de mise en forme pour l'aperçu */
+div {
+  height: 150px;
+  width: 150px;
+}
+
   </style>
 </head>
 <body>
   
-  <div></div>
+  <div class="rainbow-bg"></div>
 
 </body>
 </html>
