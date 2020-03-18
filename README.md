@@ -10,3 +10,4 @@ Ce dépôt contient les exercices réalisés durant la formation.
  3. [Bootstrap & navigation](exo-3)
  4. [Mini project n°2](exo-4)
  5. [Animation CSS](exo-5)
+ 6. [Formulaire](exo-6)
