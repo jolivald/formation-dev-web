@@ -48,13 +48,29 @@ label.cgu-wrapper {
   }
 }
 
+@keyframes slide-from-left{
+  from {
+    left: -100%;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  position: relative;
+  animation: slide-from-left 1s;
+}
+
   </style>
 </head>
 <body>
 
   <h1>Formulaire</h1>
 
-  <form action="infos.php" method="post">
+  <form action="infos.php" method="post" class="slide-in">
 
     <fieldset>
       <legend>Nous contater</legend>
