@@ -6,7 +6,47 @@
   <title>Exercice 18 mars</title>
   <style type="text/css">
 
+/* change le modèle de boite pour tous les éléments de la page */
+* {
+  box-sizing: border-box;
+}
 
+/* une ligne de formulaire */
+.form-row {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 1em;
+}
+
+/* tous les éléments dans une ligne */
+.form-row > * {
+  flex: 1 0 50%;
+}
+
+/* style spécifique aux labels */
+.form-row > label {
+  flex: 1 0 50px;
+  max-width: 250px;
+  margin-right: 1em;
+}
+
+/* style spécifique à la ligne des CGU */
+label.cgu-wrapper {
+  max-width: 100%;
+}
+
+/* style appliqué si l'écran est + large que 600px */
+@media screen and (min-width: 600px){
+  body {
+    margin: 0 20%;
+  }
+  .form-row > label {
+    text-align: right;
+  }
+  label.cgu-wrapper {
+    text-align: center;
+  }
+}
 
   </style>
 </head>
@@ -19,47 +59,49 @@
     <fieldset>
       <legend>Nous contater</legend>
 
-      <div>
+      <div class="form-row">
         <label for="email-input">Email</label>
         <input type="text" name="email" id="email-input">
-      <div>
-
       </div>
+
+      <div class="form-row">
         <label for="name-input">Nom</label>
         <input type="text" name="first-name" id="name-input">
       </div>
 
-      <div>
+      <div class="form-row">
         <label>Sexe</label>
 
-        <input type="radio" name="sex" id="sex-male-input" value="male">
-        <label for="sex-male-input">Masculin</label>
+        <div class="radio-group">
+          <input type="radio" name="sex" id="sex-male-input" value="male">
+          <label for="sex-male-input">Masculin</label>
 
-        <input type="radio" name="sex" id="sex-female-input" value="female">
-        <label for="sex-female-input">Féminin</label>
+          <input type="radio" name="sex" id="sex-female-input" value="female">
+          <label for="sex-female-input">Féminin</label>
+        </div>
       </div>
 
-      <div>
-        <label for="war-input">Clan</label>
-        <select name="war" id="war-input">
+      <div class="form-row">
+        <label for="clan-input">Clan</label>
+        <select name="clan" id="clan-input">
           <option value="good">Pain au chocolat</option>
           <option value="bad">Chocolatine</option>
         </select>
       </div>
 
-      <div>
+      <div class="form-row">
         <label for="msg-input">Message</label>
         <textarea name="msg" id="msg-input" cols="30" rows="10"></textarea>
       </div>
 
-      <div>
-        <label>
+      <div class="form-row">
+        <label class="cgu-wrapper">
           <input type="checkbox" name="cgu">
           J'accepte les conditions d'utilisations
         </label>
       </div>
 
-      <div>
+      <div class="form-row">
         <input type="submit" value="Envoyer">
         <input type="reset" value="Annuler">
       </div>
