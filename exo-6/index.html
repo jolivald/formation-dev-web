@@ -4,8 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exercice 18 mars</title>
+  <style type="text/css">
+
+
+
+  </style>
 </head>
 <body>
-  
+
+  <h1>Formulaire</h1>
+
+  <form action="infos.php" method="post">
+
+    <fieldset>
+      <legend>Nous contater</legend>
+
+      <div>
+        <label for="email-input">Email</label>
+        <input type="text" name="email" id="email-input">
+      <div>
+
+      </div>
+        <label for="name-input">Nom</label>
+        <input type="text" name="first-name" id="name-input">
+      </div>
+
+      <div>
+        <label>Sexe</label>
+
+        <input type="radio" name="sex" id="sex-male-input" value="male">
+        <label for="sex-male-input">Masculin</label>
+
+        <input type="radio" name="sex" id="sex-female-input" value="female">
+        <label for="sex-female-input">Féminin</label>
+      </div>
+
+      <div>
+        <label for="war-input">Clan</label>
+        <select name="war" id="war-input">
+          <option value="good">Pain au chocolat</option>
+          <option value="bad">Chocolatine</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="msg-input">Message</label>
+        <textarea name="msg" id="msg-input" cols="30" rows="10"></textarea>
+      </div>
+
+      <div>
+        <label>
+          <input type="checkbox" name="cgu">
+          J'accepte les conditions d'utilisations
+        </label>
+      </div>
+
+      <div>
+        <input type="submit" value="Envoyer">
+        <input type="reset" value="Annuler">
+      </div>
+
+    </fieldset>
+
+  </form>
+
 </body>
 </html>
