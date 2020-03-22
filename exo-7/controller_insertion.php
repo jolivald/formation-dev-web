@@ -3,7 +3,7 @@
 // config de l'environnement
 define('DB_USER',  'changez moi');
 define('DB_PASS',  'changez moi');
-define('DB_NAME',  'test');
+define('DB_NAME',  'insertion_sql');
 define('DB_TABLE', 'user');
 
 // accepte uniquement la méthode POST
