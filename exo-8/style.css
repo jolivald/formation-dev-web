@@ -7,9 +7,13 @@ header h1 {
 }
 header nav {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-evenly;
   margin: 0 0 2em;
+}
+header nav .current {
+  color: #000;
+  text-decoration: none;
 }
 main form fieldset {
   display: flex;
