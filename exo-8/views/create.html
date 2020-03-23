@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le CRUD PHP</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Mon CRUD</h1>
+    <nav>
+      <a href="create.html">create</a>
+      <a href="read.html">read</a>
+      <a href="update.html">update</a>
+      <a href="delete.html">delete</a>
+    </nav>
+  </header>
+
+  <main>
+    <form method="POST" action="../controllers/CRUD_ctrl.php">
+
+      <fieldset>
+        <label for="pseudo">Pseudo:</label>
+        <input type="text" id="pseudo" name="pseudo">
+      </fieldset>
+
+      <fieldset>
+        <label for="mot_de_passe">Mot de passe:</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe">
+      </fieldset>
+
+      <fieldset>
+        <label for="description">Description:</label>
+        <textarea id="description" rows="5" name="description"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <input type="submit" value="Envoyer">
+      </fieldset>
+
+    </form>
+  </main>
+
+</body>
+</html>
