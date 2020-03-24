@@ -40,7 +40,7 @@ function create($pseudo, $mot_de_passe, $description) {
   // message de confirmation
   return $done
     ? ['success', 'Utilisateur "<strong>'.htmlspecialchars($pseudo).'</strong>" enregistré avec succès.']
-    : ['error',   'Erreur à l\'inscription d l\'utilisateur.'];
+    : ['error',   'Erreur à l\'inscription de l\'utilisateur.'];
 };
 
 // appelle notre fonction en passant les paramètres POST

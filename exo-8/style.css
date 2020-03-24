@@ -28,15 +28,24 @@ main form input,
 main form textarea {
   flex: 1 0 240px;
 }
-.alert {
+main dl {
+  margin: 0;
+}
+main dl dt {
+  font-weight: bold;
+}
+main dl dd {
+  margin: 0 0 1em 0;
+}
+main .alert {
   padding: 1em 1em;
   border-radius: .5em;
 }
-.error {
+main .error {
   background: pink;
   border: 1px solid red;
 }
-.success {
+main .success {
   background: lightgreen;
   border: 1px solid green;
 }
