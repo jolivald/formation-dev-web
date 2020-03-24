@@ -28,3 +28,15 @@ main form input,
 main form textarea {
   flex: 1 0 240px;
 }
+.alert {
+  padding: 1em 1em;
+  border-radius: .5em;
+}
+.error {
+  background: pink;
+  border: 1px solid red;
+}
+.success {
+  background: lightgreen;
+  border: 1px solid green;
+}
