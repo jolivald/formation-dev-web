@@ -18,6 +18,7 @@ header nav .current {
 main form fieldset {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   padding: 0 0 1em;
   border: 0;
 }
@@ -27,6 +28,24 @@ main form label {
 main form input,
 main form textarea {
   flex: 1 0 240px;
+  border: 1px solid #cdc7c2;
+  border-radius: .25em;
+  box-shadow: none;
+  padding: .25em .5em;
+}
+main form input:focus:invalid,
+main form textarea:focus:invalid {
+  background: pink;
+  border-color: red;
+}
+main form input:focus:valid,
+main form textarea:focus:valid {
+  background: lightgreen;
+  border-color: green;
+}
+main form input[type="submit"] {
+  flex: 0 0 50%;
+  box-shadow: 0 2px 5px #cdc7c2;
 }
 main dl {
   margin: 0;
