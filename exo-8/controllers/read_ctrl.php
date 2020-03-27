@@ -1,46 +1,47 @@
 <?php
 
-// charge la config de la BDD
-require_once('../config.php');
+// charge la classe User qui implémente le CRUD
+require_once('../User.php');
 
-// utilise une fonction pour pouvoir stopper immédiatement en cas d'erreur
-function read($pseudo) {
+// variables utilisées pour afficher une réponse à la requête
+$alert   = '';
+$message = '';
 
-  // mini validation du paramètre
-  if (empty($pseudo))  return ['error', 'Le pseudo est requis.'];
+try {
 
-  // ouvre la connection BDD
-  try {
-    $db = new PDO(
-      'mysql:dbname='.DB_NAME.';host=127.0.0.1',
-      DB_USER,
-      DB_PASS
-    );
-  }
-  catch (PDOException $e) {
-    return ['error', 'Impossible de se connecter à la base de données.'];
+  // récupère le pseudonyme passé en POST
+  $pseudo = $_POST['pseudo'];
+
+  // validation du pseudonyme
+  if (!isset($pseudo) || strlen($pseudo) < 4){
+    throw new Exception('Le pseudonyme doit contenir au moins quatre caractères.');
   }
 
-  // prepare la requête de selection SQL
-  $query = $db->prepare(
-    'SELECT `pseudo`, `description` FROM `user` WHERE pseudo=? LIMIT 1'
-  );
+  // crée une instance de la classe User
+  $user = new User();
 
-  // exécute la requête avec les paramètres
-  $done = $query->execute([ $pseudo ]);
-  if (!$done) return ['error', 'Erreur à la lecture de l\'utilisateur.'];
+  // interroge la BDD au sujet de ce pseudonyme
+  [$pseudo, $description] = $user->read($pseudo);
 
-  // récupère le premier utilisateur dans le résultat
-  $user = $query->fetch(PDO::FETCH_ASSOC);
-  if (!$user) return ['error', 'L\'utilisateur "<strong>'.htmlspecialchars($pseudo).'</strong> n\'existe pas.'];
-
-  // message de confirmation
-  return ['success', $user];
+  // mets à jour le message pour afficher les infos utilisateur
+  $alert   = 'success';
+  $message = <<<HTM
+<dl>
+  <dt>Pseudo</dt>
+  <dd>$pseudo</dd>
+  <dt>Description</dt>
+  <dd>$description</dd>
+</dl>
+HTM;
 
 }
+catch (Exception $e){
+  // en cas d'erreur on réécrit les variables d'affichage
+  $alert   = 'error';
+  $message = $e->getMessage();
+}
 
-[$type, $message] = read($_POST['pseudo']);
-
+// normalement on se sert d'un système de template pour réutiliser les vues
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,18 +64,12 @@ function read($pseudo) {
   </header>
 
   <main>
-    <?php if ($type === 'success'): ?>
-      <dl>
-        <dt>Pseudo</dt>
-        <dd><?= htmlspecialchars($message['pseudo']) ?></dd>
-        <dt>Description</dt>
-        <dd><?= htmlspecialchars($message['description']) ?></dd>
-      </dl>
-    <?php else: ?>
-      <p class="alert <?= $type ?>">
-        <?= $message ?>
-      </p>
-    <?php endif; ?>
+    <!-- affiche les infos utilisateur ou le message d'erreur -->
+    <?php
+      echo $alert === 'success'
+        ? $message
+        : sprintf('<p class="alert %s">%s</p>', $alert, $message);
+    ?>
   </main>
 
 </body>

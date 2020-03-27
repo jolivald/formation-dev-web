@@ -1,55 +1,53 @@
 <?php
 
-// charge la config de la BDD
-require_once('../config.php');
+// charge la classe User qui implémente le CRUD
+require_once('../User.php');
 
-// utilise une fonction pour pouvoir stopper immédiatement en cas d'erreur
-function create($pseudo, $mot_de_passe, $description) {
+// variables utilisées pour afficher une réponse à la requête
+$alert   = '';
+$message = '';
 
-  // mini validation des paramètres
-  if (empty($pseudo))       return ['error', 'Le pseudo est requis.'];
-  if (empty($mot_de_passe)) return ['error', 'Le mot de passe et requis.'];
-  if (empty($description))  return ['error', 'La description est requise.'];
+try {
 
-  // ouvre la connection BDD
-  try {
-    $db = new PDO(
-      'mysql:dbname='.DB_NAME.';host=127.0.0.1',
-      DB_USER,
-      DB_PASS
-    );
+  // récupère les paramètres passés en POST
+  $pseudo       = $_POST['pseudo'];
+  $mot_de_passe = $_POST['mot_de_passe'];
+  $description  = $_POST['description'];
+
+  // validation des paramètres
+  if (!isset($pseudo) || strlen($pseudo) < 4){
+    throw new Exception('Le pseudonyme doit contenir au moins quatre caractères.');
   }
-  catch (PDOException $e) {
-    return ['error', 'Impossible de se connecter à la base de données.'];
+  if (!isset($mot_de_passe) || strlen($mot_de_passe) < 4){
+    throw new Exception('Le mot de passe doit contenir au moins quatre caractères.');
+  }
+  if (!isset($description) || empty($description)){
+    throw new Exception('Le champs description est obligatoire.');
   }
 
-  // prepare la requête d'insertion SQL
-  $query = $db->prepare(
-    'INSERT INTO '.DB_TABLE.' (pseudo, mot_de_passe, description) VALUES (?, ?, ?)'
-  );
+  // crée une instance de la classe User
+  $user = new User();
 
-  // exécute la requête avec les paramètres
-  // (normalement le mot de passe devrait être haché avant insertion)
-  // (le champs description est stocké tel quel et devra être sécurisé à l'affichage)
-  $done = $query->execute([
-    $pseudo,
-    $mot_de_passe, // TODO password_hash ???
-    $description
-  ]);
+  // vérifie si un utilisateur est déjà enregistré avec ce pseudo
+  if ($user->exists($_POST['pseudo'])){
+    throw new Exception('Un utilisateur est déjà enregistré avec ce pseudonyme.');
+  }
 
-  // message de confirmation
-  return $done
-    ? ['success', 'Utilisateur "<strong>'.htmlspecialchars($pseudo).'</strong>" enregistré avec succès.']
-    : ['error',   'Erreur à l\'inscription de l\'utilisateur.'];
-};
+  // ajoute l'utilisateur à la BDD
+  $user->create($pseudo, $mot_de_passe, $description);
 
-// appelle notre fonction en passant les paramètres POST
-[$type, $message] = create(
-  $_POST['pseudo'],
-  $_POST['mot_de_passe'],
-  $_POST['description']
-);
+  // mets à jour le message pour afficher la confirmation
+  $alert   = 'success';
+  $message = 'Utilisateur <strong>'.htmlspecialchars($pseudo).'</strong> enregistré avec succès.';
+  
+}
+catch (Exception $e){
+  // mets à jour le message pour afficher l'erreur
+  $alert   = 'error';
+  $message = $e->getMessage();
+}
 
+// normalement on se sert d'un système de template pour réutiliser les vues
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,9 +70,8 @@ function create($pseudo, $mot_de_passe, $description) {
   </header>
 
   <main>
-    <p class="alert <?= $type ?>">
-      <?= $message ?>
-    </p>
+    <!-- affiche le message de confirmation ou d'erreur -->
+    <?php echo sprintf('<p class="alert %s">%s</p>', $alert, $message); ?>
   </main>
 
 </body>
