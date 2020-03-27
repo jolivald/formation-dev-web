@@ -23,17 +23,28 @@
 
       <fieldset>
         <label for="pseudo">Pseudo:</label>
-        <input type="text" id="pseudo" name="pseudo">
+        <input type="text" id="pseudo" name="pseudo"
+          required
+          pattern="\w{4,}"
+          title="Le pseudo doit contenir quatre caratères au minimum."
+        >
       </fieldset>
 
       <fieldset>
         <label for="mot_de_passe">Mot de passe:</label>
-        <input type="password" id="mot_de_passe" name="mot_de_passe">
+        <input type="password" id="mot_de_passe" name="mot_de_passe"
+          required
+          pattern="\w{4,}"
+          title="Le mot de passe doit contenir quatre caratères au minimum."
+        >
       </fieldset>
 
       <fieldset>
         <label for="description">Description:</label>
-        <textarea id="description" rows="5" name="description"></textarea>
+        <textarea id="description" rows="5" name="description"
+          required
+          title="La description doit être renseignée."
+        ></textarea>
       </fieldset>
 
       <fieldset>

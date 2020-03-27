@@ -23,7 +23,11 @@
 
       <fieldset>
         <label for="pseudo">Pseudo:</label>
-        <input type="text" id="pseudo" name="pseudo">
+        <input type="text" id="pseudo" name="pseudo"
+          required
+          pattern="\w{4,}"
+          title="Le pseudo doit contenir quatre caratères au minimum."
+        >
       </fieldset>
 
       <fieldset>
