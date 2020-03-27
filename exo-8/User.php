@@ -14,7 +14,7 @@ class User
    * 
    * @throws Exception En cas d'erreur de connection.
    */
-  public function __construct(){
+  public function __construct() {
     try {
       $this->db = new PDO(
         'mysql:dbname='.DB_NAME.';host=127.0.0.1',
@@ -41,7 +41,7 @@ class User
    * @return boolean Vrai si le pseudonyme est enregistré en BDD.
    * @throws Exception En cas d'erreur de lecture.
    */
-  public function exists($pseudo){
+  public function exists($pseudo) {
     $query = $this->db->prepare(
       'SELECT COUNT(pseudo) as count FROM '.DB_TABLE.' WHERE pseudo=?'
     );
@@ -59,7 +59,7 @@ class User
    * @param string $description Description de l'utilisateur.
    * @throws Exception En cas d'erreur d'écriture.
    */
-  public function create($pseudo, $mot_de_passe, $description){
+  public function create($pseudo, $mot_de_passe, $description) {
     $query = $this->db->prepare(
       'INSERT INTO '.DB_TABLE.' (`pseudo`, `mot_de_passe`, `description`) VALUES (?, ?, ?)'
     );
@@ -73,7 +73,7 @@ class User
    * @param string $pseudo Pseudonyme de l'utilisateur.
    * @throws Exception En cas d'erreur de lecture.
    */
-  public function read($pseudo){
+  public function read($pseudo) {
     $query = $this->db->prepare(
       'SELECT pseudo, description FROM '.DB_TABLE.' WHERE pseudo=?'
     );
@@ -92,7 +92,7 @@ class User
    * @param string $description Description de l'utilisateur.
    * @throws Exception En cas d'erreur de mise à jour.
    */
-  public function update($pseudo, $mot_de_passe, $description){
+  public function update($pseudo, $mot_de_passe, $description) {
     $query = $this->db->prepare(
       'UPDATE '.DB_TABLE.' SET mot_de_passe=:mot_de_passe, description=:description WHERE pseudo=:pseudo'
     );
@@ -103,7 +103,21 @@ class User
     ]);
     if (!$done) throw new Exception('Erreur à la mise à jour de la table des utilisateurs.');
   }
-  
+
+  /**
+   * Supprime un utilisateur de la base de données.
+   * 
+   * @param string $pseudo Pseudonyme de l'utilisateur.
+   * @throws Exception En cas d'erreur de supression.
+   */
+  public function delete($pseudo) {
+    $query = $this->db->prepare(
+      'DELETE FROM '.DB_TABLE.' WHERE pseudo=?'
+    );
+    $done = $query->execute([$pseudo]);
+    if (!$done) throw new Exception('Erreur à la suppression dans la table des utilisateurs.');
+  }
+
 }
 
 ?>
