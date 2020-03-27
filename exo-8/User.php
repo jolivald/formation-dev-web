@@ -80,9 +80,30 @@ class User
     $done = $query->execute([$pseudo]);
     if (!$done) throw new Exception('Erreur à la lecture de la table des utilisateurs.');
     $result = $query->fetch(PDO::FETCH_NUM);
-    if (!$result) throw new Exception('L`utilisateur <strong>'.htmlspecialchars($pseudo).'</strong> n\'existe pas.');
+    if (!$result) throw new Exception('L\'utilisateur <strong>'.htmlspecialchars($pseudo).'</strong> n\'existe pas.');
     return $result;
   }
+
+  /**
+   * Mets à jour un utilisateur en base de données.
+   * 
+   * @param string $pseudo Pseudonyme de l'utilisateur.
+   * @param string $mot_de_passe Mot de passe de l'utilisateur.
+   * @param string $description Description de l'utilisateur.
+   * @throws Exception En cas d'erreur de mise à jour.
+   */
+  public function update($pseudo, $mot_de_passe, $description){
+    $query = $this->db->prepare(
+      'UPDATE '.DB_TABLE.' SET mot_de_passe=:mot_de_passe, description=:description WHERE pseudo=:pseudo'
+    );
+    $done = $query->execute([
+      'pseudo' => $pseudo,
+      'mot_de_passe' => $mot_de_passe,
+      'description' => $description
+    ]);
+    if (!$done) throw new Exception('Erreur à la mise à jour de la table des utilisateurs.');
+  }
+  
 }
 
 ?>
