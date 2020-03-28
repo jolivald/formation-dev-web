@@ -1,0 +1,70 @@
+body {
+  max-width: 600px;
+  margin: 0 auto;
+}
+header h1 {
+  text-align: center;
+}
+header nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin: 0 0 2em;
+}
+header nav .current {
+  color: #000;
+  text-decoration: none;
+}
+main form fieldset {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 0 0 1em;
+  border: 0;
+}
+main form label {
+  flex: 1 0 120px;
+}
+main form input,
+main form textarea {
+  flex: 1 0 240px;
+  border: 1px solid #cdc7c2;
+  border-radius: .25em;
+  box-shadow: none;
+  padding: .25em .5em;
+}
+main form input:focus:invalid,
+main form textarea:focus:invalid {
+  background: pink;
+  border-color: red;
+}
+main form input:focus:valid,
+main form textarea:focus:valid {
+  background: lightgreen;
+  border-color: green;
+}
+main form input[type="submit"] {
+  flex: 0 0 50%;
+  box-shadow: 0 2px 5px #cdc7c2;
+}
+main dl {
+  margin: 0;
+}
+main dl dt {
+  font-weight: bold;
+}
+main dl dd {
+  margin: 0 0 1em 0;
+}
+main .alert {
+  padding: 1em 1em;
+  border-radius: .5em;
+}
+main .error {
+  background: pink;
+  border: 1px solid red;
+}
+main .success {
+  background: lightgreen;
+  border: 1px solid green;
+}

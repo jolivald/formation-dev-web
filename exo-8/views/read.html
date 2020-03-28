@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le CRUD PHP</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Mon CRUD</h1>
+    <nav>
+      <a href="create.html">create</a>
+      <a href="read.html" class="current">read</a>
+      <a href="update.html">update</a>
+      <a href="delete.html">delete</a>
+    </nav>
+  </header>
+
+  <main>
+    <form method="POST" action="../controllers/read_ctrl.php">
+
+      <fieldset>
+        <label for="pseudo">Pseudo:</label>
+        <input type="text" id="pseudo" name="pseudo"
+          required
+          pattern="\w{4,}"
+          title="Le pseudo doit contenir quatre caratères au minimum."
+        >
+      </fieldset>
+
+      <fieldset>
+        <input type="submit" value="Envoyer">
+      </fieldset>
+
+    </form>
+  </main>
+
+</body>
+</html>
