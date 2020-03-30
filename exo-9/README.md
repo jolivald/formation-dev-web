@@ -90,13 +90,13 @@ Lire c
 // calcule le discriminant du polynôme
 delta ← (b ^ 2) - (4 * a * c)
 // si le polynôme a deux racines
-SI delta > 0
+SI delta > 0 ALORS
   // on calcule la première racine
   racine_1 ← (-b + Sqrt(delta)) / (2 * a)
   // on calcule la deuxième racine
   racine_2 ← (-b - Sqrt(delta)) / (2 * a)
 // si le polynôme n'a qu'une racine
-SINON SI delta == 0
+SINON SI delta == 0 ALORS
   // on calcule l'unique racine
   racine ← -b / (2 * a)
 // sinon le polynôme n'a pas de racine
