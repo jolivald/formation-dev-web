@@ -51,9 +51,9 @@ PI ← 3,14159
 // l'utilisateur fourni la valeur du rayon
 Lire rayon
 // calcule de la surface de la sphere
-surface ← 4 * PI * rayon ^ 2
+surface ← 4 * PI * (rayon ^ 2)
 // calcul du volume de la sphere
-volume ← 4/3 * PI * rayon ^ 3
+volume ← (4/3) * PI * (rayon ^ 3)
 // affichage de la surface
 Écrire surface
 // affichage du volume
@@ -73,10 +73,12 @@ nombre ← Longueur(texte)
 Écrire nombre
 ```
 
+
 ## Polynôme du second degré
 
 Calculer les racines d'un polynôme du 2nd degré Ax²+Bx+C (avec A<>0 dans l'absolu mais ce test ne sera pas effectué ici).  
-Les valeurs A,B et C seront saisies au clavier. Une phrase de commentaire sera déclarée pour chaque opération.
+Les valeurs A,B et C seront saisies au clavier.  
+Une phrase de commentaire sera déclarée pour chaque opération.
 
 ```
 // l'utilisateur fourni la valeur du coeficient a
