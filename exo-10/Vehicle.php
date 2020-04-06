@@ -98,7 +98,7 @@ class Vehicle {
    * 
    * @return boolean Etat de démarrage du moteur.
    */
-  public function getEngineState(){
+  public function getEngineState() {
     return $this->engine_state;
   }
 
