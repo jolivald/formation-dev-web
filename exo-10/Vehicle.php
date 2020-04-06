@@ -8,17 +8,26 @@ class Vehicle {
   /**
    * @var boolean $wheel_condition Etat des pneus.
    */
-  private $wheel_condition = TRUE;
+  private $wheel_condition;
 
   /**
    * @var int $fuel_level Niveau de carburant.
    */
-  private $fuel_level = 100;
+  private $fuel_level;
 
   /**
    * @var boolean $engine_state Etat de démarrage du moteur.
    */
-  private $engine_state = FALSE;
+  private $engine_state;
+
+  /**
+   * Initialise une instance de la clase Vehicle.
+   */
+  public function __construct() {
+    $this->wheel_condition = TRUE;
+    $this->fuel_level = 100;
+    $this->engine_state= FALSE;
+  }
 
   /**
    * Essaye de démarrer le véhicule, il y a 80% de chances pour que le véhicule démarre.
