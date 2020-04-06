@@ -6,6 +6,21 @@
 class Vehicle {
 
   /**
+   * @var int LOW_ENGINE_POWER Puissance de moteur basse.
+   */
+  private const LOW_ENGINE_POWER = 90;
+
+  /**
+   * @var int MID_ENGINE_POWER Puissance de moteur modérée.
+   */
+  private const MID_ENGINE_POWER = 110;
+
+  /**
+   * @var int HIGH_ENGINE_POWER Puissance de moteur élevée.
+   */
+  private const HIGH_ENGINE_POWER = 130;
+
+  /**
    * @var boolean $wheel_condition Etat des pneus.
    */
   private $wheel_condition;
@@ -21,12 +36,18 @@ class Vehicle {
   private $engine_state;
 
   /**
-   * Initialise une instance de la clase Vehicle.
+   * @var int $engine_power Puissance du moteur.
+   */
+  private $engine_power;
+
+  /**
+   * Initialise une instance de la classe Vehicle.
    */
   public function __construct() {
     $this->wheel_condition = TRUE;
     $this->fuel_level = 100;
-    $this->engine_state= FALSE;
+    $this->engine_state = FALSE;
+    $this->engine_power = self::LOW_ENGINE_POWER;
   }
 
   /**
@@ -45,7 +66,7 @@ class Vehicle {
    * 
    * @return boolean Etat des pneus.
    */
-  public function getWheelCondition(){
+  public function getWheelCondition() {
     return $this->wheel_condition;
   }
 
@@ -54,7 +75,7 @@ class Vehicle {
    * 
    * @return int Niveau de carburant.
    */
-  public function getFuelLevel(){
+  public function getFuelLevel() {
     return $this->fuel_level;
   }
 
@@ -65,6 +86,15 @@ class Vehicle {
    */
   public function getEngineState(){
     return $this->engine_state;
+  }
+
+  /**
+   * Accesseur de l'attribut engine_power.
+   * 
+   * @return int Puissance du moteur.
+   */
+  public function getEnginePower() {
+    return $this->engine_power;
   }
 
 }

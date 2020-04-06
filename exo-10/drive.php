@@ -18,7 +18,7 @@ $vehicle1->engine_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vehicle</title>
   <style type="text/css">
-  
+
 body {
   font-family: monospace;
   width: 350px;
@@ -57,6 +57,10 @@ table {
     <tr>
       <td>Wheel condition:</td>
       <td><?= $vehicle1->getWheelCondition() ? 'good' : 'bad' ?></td>
+    </tr>
+    <tr>
+      <td>Engine power:</td>
+      <td><?= $vehicle1->getEnginePower() ?>cv</td>
     </tr>
   </table>
 </body>
