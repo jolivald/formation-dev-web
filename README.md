@@ -13,4 +13,5 @@ Ce dépôt contient les exercices réalisés durant la formation.
  6. [Formulaire](exo-6)
  7. [Insertion SQL](exo-7)
  8. [CRUD PHP](exo-8)
+ 9. [Pseudo code](exo-9)
  
