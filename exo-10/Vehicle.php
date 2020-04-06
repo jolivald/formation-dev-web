@@ -74,14 +74,14 @@ class Vehicle {
     $this->fuel_level = $values['fuel_level'];
     switch ($values['engine_power']){
       case 'HIGH':
-        $this->engine_power = 130;
+        $this->engine_power = self::HIGH_ENGINE_POWER;
         break;
       case 'MID':
-        $this->engine_power = 110;
+        $this->engine_power = self::MID_ENGINE_POWER;
         break;
       case 'LOW': // pas de break, on cascade pour que LOW soit la valeur par défaut
       default:
-        $this->engine_power = 90;
+        $this->engine_power = self::LOW_ENGINE_POWER;
         break;
     }
   }
