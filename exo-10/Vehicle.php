@@ -57,11 +57,33 @@ class Vehicle {
   /**
    * Initialise une instance de la classe Vehicle.
    */
-  public function __construct() {
-    $this->wheel_condition = TRUE;
-    $this->fuel_level = 100;
+  public function __construct(array $values=NULL) {
     $this->engine_state = FALSE;
-    $this->engine_power = self::LOW_ENGINE_POWER;
+    if (is_null($values)){   
+      $this->wheel_condition = TRUE;
+      $this->fuel_level = 100;
+      $this->engine_power = self::LOW_ENGINE_POWER;
+    }
+    else {
+      $this->hydrate($values);
+    }
+  }
+
+  private function hydrate(array $values) {
+    $this->wheel_condition = (boolean) $values['wheel_condition'];
+    $this->fuel_level = $values['fuel_level'];
+    switch ($values['engine_power']){
+      case 'HIGH':
+        $this->engine_power = 130;
+        break;
+      case 'MID':
+        $this->engine_power = 110;
+        break;
+      case 'LOW': // pas de break, on cascade pour que LOW soit la valeur par défaut
+      default:
+        $this->engine_power = 90;
+        break;
+    }
   }
 
   /**
