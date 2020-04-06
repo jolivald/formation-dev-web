@@ -6,6 +6,11 @@
 class Vehicle {
 
   /**
+   * @var string $honk Son de klaxon du véhicule.
+   */
+  private static $honk = 'Tuuut Tuut';
+
+  /**
    * @var int LOW_ENGINE_POWER Puissance de moteur basse.
    */
   private const LOW_ENGINE_POWER = 90;
@@ -39,6 +44,15 @@ class Vehicle {
    * @var int $engine_power Puissance du moteur.
    */
   private $engine_power;
+
+  /**
+   * Renvoie le son de klaxon du véhicule.
+   * 
+   * @return string Son de klaxon du véhicule.
+   */  
+  public static function toHonk() {
+    return self::$honk;
+  }
 
   /**
    * Initialise une instance de la classe Vehicle.

@@ -9,6 +9,10 @@ $vehicle1 = new Vehicle();
 // Essaye de démarrer le moteur.
 $vehicle1->engine_start();
 
+// Fais klaxonner le véhicule avec deux méthodes différentes.
+Vehicle::toHonk();
+$vehicle1::toHonk();
+
 // Affichage du tableau de bord.
 ?>
 <!DOCTYPE html>
