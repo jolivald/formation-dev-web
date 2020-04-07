@@ -56,6 +56,8 @@ class Vehicle {
 
   /**
    * Initialise une instance de la classe Vehicle.
+   * 
+   * @param array $values Tableau associatif des paramètres du véhicule, optionnel.
    */
   public function __construct(array $values=NULL) {
     $this->engine_state = FALSE;
@@ -69,6 +71,12 @@ class Vehicle {
     }
   }
 
+
+  /**
+   * Hydrate une instance avec des valeurs externes.
+   * 
+   * @param array $values Tableau associatif des paramètres du véhicule.
+   */
   private function hydrate(array $values) {
     $this->wheel_condition = (boolean) $values['wheel_condition'];
     $this->fuel_level = $values['fuel_level'];
