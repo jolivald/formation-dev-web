@@ -21,8 +21,24 @@ class Bateau {
   private $entretiens;
   private $trajets;
 
-  public function __construct() {
-    
+  /**
+   * Crée une instance de la classe bateau et l'hydrate avec les valeurs provenant de la BDD.
+   * 
+   * @param array $values Tableau asociatif des valeurs associées à un bateau.
+   */
+  public function __construct($values) {
+    $this->setId($values['id']);
+    $this->setNom($values['nom']);
+    $this->setModele($values['modele']);
+    $this->setTaille($values['taille']);
+    $this->setVoilier((boolean) $values['voilier']);
+    $this->setCreated_by($values['created_by']);
+    $this->setUpdated_by($values['updated_by']);
+    $this->setCreated_date($values['created_date']);
+    $this->setUpdated_date($values['updated_date']);
+    $this->setProprietaires($values['propietaires']);
+    $this->setEntretiens($values['entretiens']);
+    $this->setTrajets($values['trajets']);
   }
 
 
@@ -162,4 +178,84 @@ class Bateau {
   }
 
 
+
+  /**
+   * Get the value of created_by
+   */ 
+  public function getCreated_by()
+  {
+    return $this->created_by;
+  }
+
+  /**
+   * Set the value of created_by
+   *
+   * @return  self
+   */ 
+  public function setCreated_by($created_by)
+  {
+    $this->created_by = $created_by;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of updated_by
+   */ 
+  public function getUpdated_by()
+  {
+    return $this->updated_by;
+  }
+
+  /**
+   * Set the value of updated_by
+   *
+   * @return  self
+   */ 
+  public function setUpdated_by($updated_by)
+  {
+    $this->updated_by = $updated_by;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of created_date
+   */ 
+  public function getCreated_date()
+  {
+    return $this->created_date;
+  }
+
+  /**
+   * Set the value of created_date
+   *
+   * @return  self
+   */ 
+  public function setCreated_date($created_date)
+  {
+    $this->created_date = $created_date;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of updated_date
+   */ 
+  public function getUpdated_date()
+  {
+    return $this->updated_date;
+  }
+
+  /**
+   * Set the value of updated_date
+   *
+   * @return  self
+   */ 
+  public function setUpdated_date($updated_date)
+  {
+    $this->updated_date = $updated_date;
+
+    return $this;
+  }
 }
