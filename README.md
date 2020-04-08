@@ -15,4 +15,4 @@ Ce dépôt contient les exercices réalisés durant la formation.
   8. [CRUD PHP](exo-08)
   9. [Pseudo code](exo-09)
  10. [PHP orienté objet](exo-10)
- 
+ 11. [Conception de base de données](exo-11)
