@@ -126,6 +126,74 @@ class Bateau {
     $this->voilier = $voilier;
     return $this;
   }
+  
+  /**
+   * Get the value of created_by
+   */ 
+  public function getCreated_by() {
+    return $this->created_by;
+  }
+
+  /**
+   * Set the value of created_by
+   *
+   * @return self
+   */ 
+  public function setCreated_by($created_by) {
+    $this->created_by = $created_by;
+    return $this;
+  }
+
+  /**
+   * Get the value of updated_by
+   */ 
+  public function getUpdated_by() {
+    return $this->updated_by;
+  }
+
+  /**
+   * Set the value of updated_by
+   *
+   * @return self
+   */ 
+  public function setUpdated_by($updated_by) {
+    $this->updated_by = $updated_by;
+    return $this;
+  }
+
+  /**
+   * Get the value of created_date
+   */ 
+  public function getCreated_date() {
+    return $this->created_date;
+  }
+
+  /**
+   * Set the value of created_date
+   *
+   * @return self
+   */ 
+  public function setCreated_date($created_date) {
+    $this->created_date = $created_date;
+    return $this;
+  }
+
+  /**
+   * Get the value of updated_date
+   */ 
+  public function getUpdated_date() {
+    return $this->updated_date;
+  }
+
+  /**
+   * Set the value of updated_date
+   *
+   * @return self
+   */ 
+  public function setUpdated_date($updated_date) {
+    $this->updated_date = $updated_date;
+    return $this;
+  }
 
   /**
    * Get the value of proprietaires
@@ -177,85 +245,4 @@ class Bateau {
     return $this;
   }
 
-
-
-  /**
-   * Get the value of created_by
-   */ 
-  public function getCreated_by()
-  {
-    return $this->created_by;
-  }
-
-  /**
-   * Set the value of created_by
-   *
-   * @return  self
-   */ 
-  public function setCreated_by($created_by)
-  {
-    $this->created_by = $created_by;
-
-    return $this;
-  }
-
-  /**
-   * Get the value of updated_by
-   */ 
-  public function getUpdated_by()
-  {
-    return $this->updated_by;
-  }
-
-  /**
-   * Set the value of updated_by
-   *
-   * @return  self
-   */ 
-  public function setUpdated_by($updated_by)
-  {
-    $this->updated_by = $updated_by;
-
-    return $this;
-  }
-
-  /**
-   * Get the value of created_date
-   */ 
-  public function getCreated_date()
-  {
-    return $this->created_date;
-  }
-
-  /**
-   * Set the value of created_date
-   *
-   * @return  self
-   */ 
-  public function setCreated_date($created_date)
-  {
-    $this->created_date = $created_date;
-
-    return $this;
-  }
-
-  /**
-   * Get the value of updated_date
-   */ 
-  public function getUpdated_date()
-  {
-    return $this->updated_date;
-  }
-
-  /**
-   * Set the value of updated_date
-   *
-   * @return  self
-   */ 
-  public function setUpdated_date($updated_date)
-  {
-    $this->updated_date = $updated_date;
-
-    return $this;
-  }
 }
