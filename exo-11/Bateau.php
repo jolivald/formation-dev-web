@@ -6,243 +6,222 @@
 class Bateau {
 
   // données provenant de la table bateau
-  private $id;
-  private $nom;
-  private $modele;
-  private $taille;
-  private $voilier;
-  private $created_by;
-  private $updated_by;
-  private $created_date;
-  private $updated_date;
+  /**
+   * @var integer $_id Identifiant unique du bateau
+   */
+  private $_id;
+
+  /**
+   * @var string $_nom Nom bu bateau
+   */
+  private $_nom;
+
+
+  /**
+   * @var string $_modele Modèle du bateau
+   */
+  private $_modele;
+
+  /**
+   * @var float $_taille Taille du bateau
+   */
+  private $_taille;
+
+  /**
+   * @var boolean $_voilier Vrai si le bateau est un voilier
+   */
+  private $_voilier;
 
   // données provenant de relations avec la table bateau
-  private $proprietaires;
-  private $entretiens;
-  private $trajets;
+
+  /**
+   * @var array $_proprietaires Liste des propriétaires du bateau
+   */
+  private $_proprietaires;
+
+  /**
+   * @var array $_entretiens Liste des entretiens effectués sur ce bateau
+   */
+  private $_entretiens;
+
+  /**
+   * @var array $_trajets Liste des trajets effectués par ce bateau
+   */
+  private $_trajets;
 
   /**
    * Crée une instance de la classe bateau et l'hydrate avec les valeurs provenant de la BDD.
    * 
-   * @param array $values Tableau asociatif des valeurs associées à un bateau.
+   * @param array $values Tableau asociatif des valeurs associées au bateau.
    */
   public function __construct($values) {
-    $this->setId($values['id']);
-    $this->setNom($values['nom']);
-    $this->setModele($values['modele']);
-    $this->setTaille($values['taille']);
-    $this->setVoilier((boolean) $values['voilier']);
-    $this->setCreated_by($values['created_by']);
-    $this->setUpdated_by($values['updated_by']);
-    $this->setCreated_date($values['created_date']);
-    $this->setUpdated_date($values['updated_date']);
-    $this->setProprietaires($values['propietaires']);
-    $this->setEntretiens($values['entretiens']);
-    $this->setTrajets($values['trajets']);
+    $this->set_id($values['id']);
+    $this->set_nom($values['nom']);
+    $this->set_modele($values['modele']);
+    $this->set_taille($values['taille']);
+    $this->set_voilier((boolean) $values['voilier']);
+    $this->set_proprietaires($values['propietaires']);
+    $this->set_entretiens($values['entretiens']);
+    $this->set_trajets($values['trajets']);
   }
 
-
   /**
-   * Get the value of id
+   * Get the value of _id
    */ 
-  public function getId() {
-    return $this->id;
+  public function get_id()
+  {
+    return $this->_id;
   }
 
   /**
-   * Set the value of id
+   * Set the value of _id
    *
-   * @return self
+   * @return  self
    */ 
-  public function setId($id) {
-    $this->id = $id;
+  public function set_id($_id)
+  {
+    $this->_id = $_id;
+
     return $this;
   }
 
   /**
-   * Get the value of nom
+   * Get the value of _nom
    */ 
-  public function getNom() {
-    return $this->nom;
+  public function get_nom()
+  {
+    return $this->_nom;
   }
 
   /**
-   * Set the value of nom
+   * Set the value of _nom
    *
-   * @return self
+   * @return  self
    */ 
-  public function setNom($nom) {
-    $this->nom = $nom;
+  public function set_nom($_nom)
+  {
+    $this->_nom = $_nom;
+
     return $this;
   }
 
   /**
-   * Get the value of modele
+   * Get the value of _modele
    */ 
-  public function getModele() {
-    return $this->modele;
+  public function get_modele()
+  {
+    return $this->_modele;
   }
 
   /**
-   * Set the value of modele
+   * Set the value of _modele
    *
-   * @return self
+   * @return  self
    */ 
-  public function setModele($modele) {
-    $this->modele = $modele;
+  public function set_modele($_modele)
+  {
+    $this->_modele = $_modele;
+
     return $this;
   }
 
   /**
-   * Get the value of taille
+   * Get the value of _taille
    */ 
-  public function getTaille() {
-    return $this->taille;
+  public function get_taille()
+  {
+    return $this->_taille;
   }
 
   /**
-   * Set the value of taille
+   * Set the value of _taille
    *
-   * @return self
+   * @return  self
    */ 
-  public function setTaille($taille) {
-    $this->taille = $taille;
+  public function set_taille($_taille)
+  {
+    $this->_taille = $_taille;
+
     return $this;
   }
 
   /**
-   * Get the value of voilier
+   * Get the value of _voilier
    */ 
-  public function getVoilier() {
-    return $this->voilier;
+  public function get_voilier()
+  {
+    return $this->_voilier;
   }
 
   /**
-   * Set the value of voilier
+   * Set the value of _voilier
    *
-   * @return self
+   * @return  self
    */ 
-  public function setVoilier($voilier) {
-    $this->voilier = $voilier;
-    return $this;
-  }
-  
-  /**
-   * Get the value of created_by
-   */ 
-  public function getCreated_by() {
-    return $this->created_by;
-  }
+  public function set_voilier($_voilier)
+  {
+    $this->_voilier = $_voilier;
 
-  /**
-   * Set the value of created_by
-   *
-   * @return self
-   */ 
-  public function setCreated_by($created_by) {
-    $this->created_by = $created_by;
     return $this;
   }
 
   /**
-   * Get the value of updated_by
+   * Get the value of _proprietaires
    */ 
-  public function getUpdated_by() {
-    return $this->updated_by;
+  public function get_proprietaires()
+  {
+    return $this->_proprietaires;
   }
 
   /**
-   * Set the value of updated_by
+   * Set the value of _proprietaires
    *
-   * @return self
+   * @return  self
    */ 
-  public function setUpdated_by($updated_by) {
-    $this->updated_by = $updated_by;
+  public function set_proprietaires($_proprietaires)
+  {
+    $this->_proprietaires = $_proprietaires;
+
     return $this;
   }
 
   /**
-   * Get the value of created_date
+   * Get the value of _entretiens
    */ 
-  public function getCreated_date() {
-    return $this->created_date;
+  public function get_entretiens()
+  {
+    return $this->_entretiens;
   }
 
   /**
-   * Set the value of created_date
+   * Set the value of _entretiens
    *
-   * @return self
+   * @return  self
    */ 
-  public function setCreated_date($created_date) {
-    $this->created_date = $created_date;
+  public function set_entretiens($_entretiens)
+  {
+    $this->_entretiens = $_entretiens;
+
     return $this;
   }
 
   /**
-   * Get the value of updated_date
+   * Get the value of _trajets
    */ 
-  public function getUpdated_date() {
-    return $this->updated_date;
+  public function get_trajets()
+  {
+    return $this->_trajets;
   }
 
   /**
-   * Set the value of updated_date
+   * Set the value of _trajets
    *
-   * @return self
+   * @return  self
    */ 
-  public function setUpdated_date($updated_date) {
-    $this->updated_date = $updated_date;
+  public function set_trajets($_trajets)
+  {
+    $this->_trajets = $_trajets;
+
     return $this;
   }
-
-  /**
-   * Get the value of proprietaires
-   */ 
-  public function getProprietaires() {
-    return $this->proprietaires;
-  }
-
-  /**
-   * Set the value of proprietaires
-   *
-   * @return self
-   */ 
-  public function setProprietaires($proprietaires) {
-    $this->proprietaires = $proprietaires;
-    return $this;
-  }
-  /**
-   * Get the value of entretiens
-   */ 
-  public function getEntretiens() {
-    return $this->entretiens;
-  }
-
-  /**
-   * Set the value of entretiens
-   *
-   * @retur  self
-   */ 
-  public function setEntretiens($entretiens) {
-    $this->entretiens = $entretiens;
-    return $this;
-  }
-
-  /**
-   * Get the value of trajets
-   */ 
-  public function getTrajets() {
-    return $this->trajets;
-  }
-
-  /**
-   * Set the value of trajets
-   *
-   * @return self
-   */ 
-  public function setTrajets($trajets) {
-    $this->trajets = $trajets;
-    return $this;
-  }
-
 }
