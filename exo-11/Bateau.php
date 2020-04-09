@@ -65,8 +65,11 @@ class Bateau {
     $this->set_trajets($values['trajets']);
   }
 
+
   /**
-   * Get the value of _id
+   * Get $_id Identifiant unique du bateau
+   *
+   * @return  integer
    */ 
   public function get_id()
   {
@@ -74,7 +77,9 @@ class Bateau {
   }
 
   /**
-   * Set the value of _id
+   * Set $_id Identifiant unique du bateau
+   *
+   * @param  integer  $_id  $_id Identifiant unique du bateau
    *
    * @return  self
    */ 
@@ -86,7 +91,9 @@ class Bateau {
   }
 
   /**
-   * Get the value of _nom
+   * Get $_nom Nom bu bateau
+   *
+   * @return  string
    */ 
   public function get_nom()
   {
@@ -94,11 +101,13 @@ class Bateau {
   }
 
   /**
-   * Set the value of _nom
+   * Set $_nom Nom bu bateau
+   *
+   * @param  string  $_nom  $_nom Nom bu bateau
    *
    * @return  self
    */ 
-  public function set_nom($_nom)
+  public function set_nom(string $_nom)
   {
     $this->_nom = $_nom;
 
@@ -106,7 +115,9 @@ class Bateau {
   }
 
   /**
-   * Get the value of _modele
+   * Get $_modele Modèle du bateau
+   *
+   * @return  string
    */ 
   public function get_modele()
   {
@@ -114,11 +125,13 @@ class Bateau {
   }
 
   /**
-   * Set the value of _modele
+   * Set $_modele Modèle du bateau
+   *
+   * @param  string  $_modele  $_modele Modèle du bateau
    *
    * @return  self
    */ 
-  public function set_modele($_modele)
+  public function set_modele(string $_modele)
   {
     $this->_modele = $_modele;
 
@@ -126,7 +139,9 @@ class Bateau {
   }
 
   /**
-   * Get the value of _taille
+   * Get $_taille Taille du bateau
+   *
+   * @return  float
    */ 
   public function get_taille()
   {
@@ -134,11 +149,13 @@ class Bateau {
   }
 
   /**
-   * Set the value of _taille
+   * Set $_taille Taille du bateau
+   *
+   * @param  float  $_taille  $_taille Taille du bateau
    *
    * @return  self
    */ 
-  public function set_taille($_taille)
+  public function set_taille(float $_taille)
   {
     $this->_taille = $_taille;
 
@@ -146,7 +163,9 @@ class Bateau {
   }
 
   /**
-   * Get the value of _voilier
+   * Get $_voilier Vrai si le bateau est un voilier
+   *
+   * @return  boolean
    */ 
   public function get_voilier()
   {
@@ -154,11 +173,13 @@ class Bateau {
   }
 
   /**
-   * Set the value of _voilier
+   * Set $_voilier Vrai si le bateau est un voilier
+   *
+   * @param  boolean  $_voilier  $_voilier Vrai si le bateau est un voilier
    *
    * @return  self
    */ 
-  public function set_voilier($_voilier)
+  public function set_voilier(bool $_voilier)
   {
     $this->_voilier = $_voilier;
 
@@ -166,7 +187,9 @@ class Bateau {
   }
 
   /**
-   * Get the value of _proprietaires
+   * Get $_proprietaires Liste des propriétaires du bateau
+   *
+   * @return  array
    */ 
   public function get_proprietaires()
   {
@@ -174,11 +197,13 @@ class Bateau {
   }
 
   /**
-   * Set the value of _proprietaires
+   * Set $_proprietaires Liste des propriétaires du bateau
+   *
+   * @param  array  $_proprietaires  $_proprietaires Liste des propriétaires du bateau
    *
    * @return  self
    */ 
-  public function set_proprietaires($_proprietaires)
+  public function set_proprietaires(array $_proprietaires)
   {
     $this->_proprietaires = $_proprietaires;
 
@@ -186,7 +211,9 @@ class Bateau {
   }
 
   /**
-   * Get the value of _entretiens
+   * Get $_entretiens Liste des entretiens effectués sur ce bateau
+   *
+   * @return  array
    */ 
   public function get_entretiens()
   {
@@ -194,11 +221,13 @@ class Bateau {
   }
 
   /**
-   * Set the value of _entretiens
+   * Set $_entretiens Liste des entretiens effectués sur ce bateau
+   *
+   * @param  array  $_entretiens  $_entretiens Liste des entretiens effectués sur ce bateau
    *
    * @return  self
    */ 
-  public function set_entretiens($_entretiens)
+  public function set_entretiens(array $_entretiens)
   {
     $this->_entretiens = $_entretiens;
 
@@ -206,7 +235,9 @@ class Bateau {
   }
 
   /**
-   * Get the value of _trajets
+   * Get $_trajets Liste des trajets effectués par ce bateau
+   *
+   * @return  array
    */ 
   public function get_trajets()
   {
@@ -214,11 +245,13 @@ class Bateau {
   }
 
   /**
-   * Set the value of _trajets
+   * Set $_trajets Liste des trajets effectués par ce bateau
+   *
+   * @param  array  $_trajets  $_trajets Liste des trajets effectués par ce bateau
    *
    * @return  self
    */ 
-  public function set_trajets($_trajets)
+  public function set_trajets(array $_trajets)
   {
     $this->_trajets = $_trajets;
 
