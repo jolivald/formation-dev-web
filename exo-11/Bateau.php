@@ -12,9 +12,9 @@ class Bateau {
   private $_id;
 
   /**
-   * @var string $_nom Nom bu bateau
+   * @var string $_nom_bateau Nom bu bateau
    */
-  private $_nom;
+  private $_nom_bateau;
 
 
   /**
@@ -56,7 +56,7 @@ class Bateau {
    */
   public function __construct($values) {
     $this->set_id($values['id']);
-    $this->set_nom($values['nom']);
+    $this->set_nom_bateau($values['nom']);
     $this->set_modele($values['modele']);
     $this->set_taille($values['taille']);
     $this->set_voilier((boolean) $values['voilier']);
@@ -93,11 +93,11 @@ class Bateau {
   /**
    * Get $_nom Nom bu bateau
    *
-   * @return  string
+   * @return string
    */ 
-  public function get_nom()
+  public function get_nom_bateau()
   {
-    return $this->_nom;
+    return $this->_nom_bateau;
   }
 
   /**
@@ -107,9 +107,9 @@ class Bateau {
    *
    * @return  self
    */ 
-  public function set_nom(string $_nom)
+  public function set_nom_bateau(string $_nom_bateau)
   {
-    $this->_nom = $_nom;
+    $this->_nom_bateau = $_nom_bateau;
 
     return $this;
   }

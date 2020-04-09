@@ -11,16 +11,16 @@ class Categorie {
   private $_id;
 
   /**
-   * @var string $_nom Nom du bateau
+   * @var string $_nom_categorie Nom de la catégorie
    */
-  private $_nom;
+  private $_nom_categorie;
 
   /**
    * @var array Liste des entretiens où a eu lieu cette catégorie
    */
   private $_entretiens;
 
-  
+
   /**
    * Get $_id Identifiant unique du bateau
    *
@@ -46,25 +46,25 @@ class Categorie {
   }
 
   /**
-   * Get $_nom Nom du bateau
+   * Get $_nom_categorie Nom de la catégorie
    *
    * @return  string
    */ 
-  public function get_nom()
+  public function get_nom_categorie()
   {
-    return $this->_nom;
+    return $this->_nom_categorie;
   }
 
   /**
-   * Set $_nom Nom du bateau
+   * Set $_nom_categorie Nom de la catégorie
    *
-   * @param  string  $_nom  $_nom Nom du bateau
+   * @param  string  $_nom_categorie  $_nom_categorie Nom de la catégorie
    *
    * @return  self
    */ 
-  public function set_nom(string $_nom)
+  public function set_nom_categorie(string $_nom_categorie)
   {
-    $this->_nom = $_nom;
+    $this->_nom_categorie = $_nom_categorie;
 
     return $this;
   }
