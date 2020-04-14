@@ -16,3 +16,5 @@ Ce dépôt contient les exercices réalisés durant la formation.
   9. [Pseudo code](exo-09)
  10. [PHP orienté objet](exo-10)
  11. [Conception de base de données](exo-11)
+ 12. [Templating](exo-12)
+ 
