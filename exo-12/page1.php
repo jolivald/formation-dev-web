@@ -6,7 +6,7 @@ ob_start();
 
 ?>
 
-<div class="alert alert-primary" role="alert">
+<div class="alert alert-danger" role="alert">
   <strong>Ca marche!</strong>
 </div>
 
