@@ -1,6 +1,15 @@
 {
     "require": {
         "vlucas/phpdotenv": "^4.1",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "doctrine/orm": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jonathan\\Classes\\": "class/",
+            "Jonathan\\Controller\\": "controllers/",
+            "Jonathan\\Models\\": "models/",
+            "Jonathan\\Views\\": "views/"
+        }
     }
 }
