@@ -1,7 +1,9 @@
 <?php
 
 use Dotenv\Dotenv;
-use Jonathan\Classes\App;
+use Jonathan\Classes\Request;
+//use Jonathan\Classes\App;
+use Jonathan\Classes\Router;
 use Jonathan\Controllers\Login;
 
 // utilise l'autoload fournit par composer
@@ -21,12 +23,16 @@ session_start([
   'cache_limiter' => 'nocache'
 ]);
 
-// si l'utilisateur n'est pas connecté
-if (!isset($_SESSION['logged'])){
-  $login = new Login();
-  $view = $login->getView();
-  echo $view->render();
+$request = new Request($_GET['url']);
+$router = new Router($request);
+
+$router->get('/', 'Jonathan\\Controllers\\Login');
+$router->get('/test/:id', 'Jonathan\\Controllers\\Login');
+$router->get('/login/:id/plop/:foo', 'Jonathan\\Controllers\\Login');
+
+try {
+  $router->route();
 }
-// $em = App::getEntityManager();
-// $criminel = $em->getRepository('Jonathan\\Models\\Recherches')->findOneBy(array('idR' => 1));
-// var_dump($criminel);
+catch (\Exception $e){
+  exit('no route');
+}
