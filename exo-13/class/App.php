@@ -22,6 +22,23 @@ class App {
    */
   public static function getEntityManager() {
     if (!self::$entityManager){
+      $config = Setup::createAnnotationMetadataConfiguration(
+        [__DIR__.'/../models'],
+        true, // isDevMode
+        null, // proxyDir
+        null, // cache
+        false // useSimpleAnnotationReader
+      );
+      //$driver = $config->newDefaultAnnotationDriver('/path/to/lib/MyProject/Entities');
+      //$config->setMetadataDriverImpl(
+      //  $driver
+      //);
+
+      $config->setProxyDir(__DIR__.'/proxies');
+      $config->setProxyNamespace('Jonathan\Proxies');
+      //$config->setAutoGenerateProxyClasses(
+      //  \Doctrine\Common\Proxy\AbstractProxyFactory::AUTOGENERATE_ALWAYS
+      //);
       self::$entityManager = EntityManager::create(
         [
           'driver' => $_ENV['DB_DRIVER'],
@@ -29,13 +46,14 @@ class App {
           'password' => $_ENV['DB_PASS'],
           'dbname' => $_ENV['DB_NAME']
         ],
-        Setup::createAnnotationMetadataConfiguration(
-          [__DIR__."/src"],
+        $config
+        /*Setup::createAnnotationMetadataConfiguration(
+          [__DIR__.'/../models'],
           true, // isDevMode
           null, // proxyDir
           null, // cache
           false // useSimpleAnnotationReader
-        )
+        )*/
       );
     }
     return self::$entityManager;

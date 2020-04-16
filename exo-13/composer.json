@@ -7,6 +7,7 @@
     "autoload": {
         "psr-4": {
             "Jonathan\\Classes\\": "class/",
+            "Jonathan\\Proxies\\": "class/proxies/",
             "Jonathan\\Controller\\": "controllers/",
             "Jonathan\\Models\\": "models/",
             "Jonathan\\Views\\": "views/"
