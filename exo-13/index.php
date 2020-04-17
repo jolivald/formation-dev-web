@@ -4,7 +4,7 @@ use Dotenv\Dotenv;
 use Jonathan\Classes\Request;
 //use Jonathan\Classes\App;
 use Jonathan\Classes\Router;
-use Jonathan\Controllers\Login;
+//use Jonathan\Controllers\Login;
 
 // utilise l'autoload fournit par composer
 // la config est personnalisée dans composer.json
@@ -17,14 +17,10 @@ $request = new Request($_GET['url']);
 
 $router = new Router;
 
-$router->get('/', 'Jonathan\\Controllers\\Login');
-$router->get('/test/:id', 'Jonathan\\Controllers\\Login');
 $router->get('/login', 'Jonathan\\Controllers\\Login');
+$router->post('/login', 'Jonathan\\Controllers\\Login');
 
 try {
-  if ($request->getSession('logged') !== true){
-    throw new \Exception('Must login first');
-  }
   $controller = $router->route($request);
 }
 catch (\Exception $e){
@@ -34,5 +30,7 @@ catch (\Exception $e){
 }
 
 $view = $controller->dispatch($request);
+
+echo '<p>session: '.isset($_SESSION['logged']).'</p>';
 
 echo $view->render();

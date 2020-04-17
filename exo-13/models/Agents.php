@@ -42,5 +42,24 @@ class Agents
      */
     private $niveauAccreditationA;
 
-
+    /**
+     * Get the value of motDePasseA
+     *
+     * @return  string
+     */ 
+    public function getMotDePasseA()
+    {
+        return $this->motDePasseA;
+    }
+    
+    /**
+     * Get the value of niveauAccreditationA
+     *
+     * @return  int
+     */ 
+    public function getNiveauAccreditationA()
+    {
+        return $this->niveauAccreditationA;
+    }
+    
 }

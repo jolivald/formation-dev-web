@@ -43,5 +43,16 @@ class App {
     }
     return self::$entityManager;
   }
+
+  /**
+   * Twig filter used to add base URL before passed path
+   * 
+   * @param string $path Path to prepend base URL to
+   * @return string Full URL with base prepended to path
+   * @see Jonathan\Views\BaseView::__construct
+   */
+  public static function prependBaseUrl($path) {
+     return str_replace('index.php', '', $_SERVER['SCRIPT_NAME']).$path;
+  }
   
 }

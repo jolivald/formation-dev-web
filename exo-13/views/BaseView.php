@@ -4,6 +4,7 @@ namespace Jonathan\Views;
 
 use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
+use \Twig\TwigFilter;
 
 abstract class BaseView implements IView {
 
@@ -16,6 +17,9 @@ abstract class BaseView implements IView {
     $this->setTwig(new Environment(
       new FilesystemLoader(__DIR__.'/templates')
     ));
+    $this->getTwig()->addFilter(
+      new TwigFilter('url', 'Jonathan\\Classes\\App::prependBaseUrl')
+    );
   }
 
   public abstract function render() : string;
