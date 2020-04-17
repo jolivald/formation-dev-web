@@ -27,6 +27,14 @@ class Request {
   public function __construct(string $url) {
     $this->setUrl($url);
     $this->setMethod($_SERVER['REQUEST_METHOD']);
+    session_start([
+      'cookie_lifetime' => 0,
+      'use_cookies' => 'On',
+      'use_only_cookies' => 'On',
+      'use_strict_mode' => 'On',
+      'cookie_httponly' => 'On',
+      'cache_limiter' => 'nocache'
+    ]);
   }
 
   /**
@@ -96,10 +104,23 @@ class Request {
    * Get a request URL parameter by its index
    * 
    * @param int $index Parameter index
-   * @return string URL parameter value
+   * @return string|null URL parameter value or null if not found
    */
   public function getParam(int $index) : string {
-    return $this->_params[$index];
+    return array_key_exists($index, $this->_params)
+      ? $this->_params[$index]
+      : null;
   }
 
+  /**
+   * Get a request session value by its key
+   * 
+   * @param string $key Session key
+   * @return mixed|null Session value or null if not found
+   */
+  public function getSession($key) {
+    return array_key_exists($key, $_SESSION)
+      ? $_SESSION[$key]
+      : null;
+  }
 }
