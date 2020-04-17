@@ -28,11 +28,17 @@ $router = new Router($request);
 
 $router->get('/', 'Jonathan\\Controllers\\Login');
 $router->get('/test/:id', 'Jonathan\\Controllers\\Login');
-$router->get('/login/:id/plop/:foo', 'Jonathan\\Controllers\\Login');
+$router->get('/login', 'Jonathan\\Controllers\\Login');
 
 try {
-  $router->route();
+  $controller = $router->route($request);
 }
 catch (\Exception $e){
-  exit('no route');
+  $request->setUrl('/login');
+  $request->setMethod('GET');
+  $controller = $router->route($request);
 }
+
+$view = $controller->dispatch($request);
+
+echo $view->render();

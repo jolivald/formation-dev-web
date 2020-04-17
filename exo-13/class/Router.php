@@ -7,11 +7,6 @@ use Jonathan\Controllers\IController;
 //use Jonathan\Views\IView;
 
 class Router {
-  
-  /**
-   * @var Request $_request Request instance
-   */
-  protected $_request;
 
   /**
    * @var array $_routes Registered routes
@@ -20,16 +15,6 @@ class Router {
     'GET' => [],
     'POST' => []
   ];
-
-  /**
-   * Create a new router instance
-   * 
-   * @param Request $request Request instance
-   */
-  public function __construct($request) {
-    // $this->_url = trim($url, '/');
-    $this->_request = $request;
-  }
 
   /**
    * Register a HTTP GET route
@@ -53,28 +38,10 @@ class Router {
    * @throws Exception If controller does not implement IController interface
    */
   public function post($path, string $controller){
-    if (!is_subclass_of($controller, 'Icontroller')){
+    if (!is_subclass_of($controller, 'Jonathan\\Controllers\\Icontroller')){
       throw new \Exception('Controller must implement IController interface');
     }
     $this->_routes['POST'][$path] = $controller;
-  }
-
-  /**
-   * Match a route path against request URL
-   * 
-   * @param string $path Route path
-   * @return array|boolean Route captures if match, false otherwise
-   */
-  protected function _match($path) {
-    $capture = preg_replace('#:([\w]+)#', '([^/]+)', trim($path, '/'));
-    $open = '#^';
-    $close = '$#i';
-    $regexp = $open.$capture.$close;
-    if (!preg_match($regexp, $this->_request->getUrl(), $matches)){
-      return false;
-    }
-    array_shift($matches);
-    return $matches;
   }
 
   /**
@@ -83,20 +50,40 @@ class Router {
    * @return IController Controller matching URL
    * @throws Exception If no route matches
    */
-  public function route() : IController {
-    $method = $this->_request->getMethod();
+  public function route(Request $request) : IController {
+    $url = $request->getUrl();
+    $method = $request->getMethod();
     if (!isset($this->_routes[$method])){
       throw new \Exception('Bad request');
     }
-    echo '<pre>'.print_r($this->_routes, true).'</pre>';
     foreach ($this->_routes[$method] as $path => $controller){
-      $matches = $this->_match($path);
-      if ($matches){
-        $this->_request->setParams($matches);
-        return new $controller($this->_request);
+      $matches = $this->_match($url, $path);
+      if (is_array($matches)){
+        $request->setParams($matches);
+        return new $controller;
       }
     }
     throw new \Exception('No route matches');
+  }
+
+  /**
+   * Match a route path against request URL
+   * 
+   * @param string $url Requested URL
+   * @param string $path Route path
+   * @return array|boolean Route captures if match, false otherwise
+   */
+  protected function _match($url, $path) {
+    $url = trim($url, '/');
+    $capture = preg_replace('#:([\w]+)#', '([^/]+)', trim($path, '/'));
+    $open = '#^';
+    $close = '$#i';
+    $regexp = $open.$capture.$close;
+    if (!preg_match($regexp, $url, $matches)){
+      return false;
+    }
+    array_shift($matches);
+    return $matches;
   }
 
 }

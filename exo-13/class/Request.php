@@ -46,7 +46,7 @@ class Request {
    * @return  self
    */ 
   public function setUrl(string $url) : self {
-    $this->_url = trim($url, '/');
+    $this->_url = $url;
     return $this;
   }
 
@@ -92,6 +92,12 @@ class Request {
     return $this;
   }
 
+  /**
+   * Get a request URL parameter by its index
+   * 
+   * @param int $index Parameter index
+   * @return string URL parameter value
+   */
   public function getParam(int $index) : string {
     return $this->_params[$index];
   }

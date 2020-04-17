@@ -7,8 +7,8 @@ use Jonathan\Views\IView;
 
 interface IController {
 
-  public function __construct(Request $request);
+  public function __construct();
 
-  public function dispatch() : Iview;
+  public function dispatch(Request $request) : Iview;
 
 }
