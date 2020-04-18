@@ -30,7 +30,6 @@ class Response {
     $this->getTwig()->addFilter(
       new TwigFilter('url', 'Jonathan\Classes\App::prependBaseUrl')
     );
-    $this->_twig = $_twig;
   }
 
   /**
