@@ -45,6 +45,16 @@ class App {
   }
 
   /**
+   * Check $_SESSION to check if user is authentified
+   * 
+   * @return boolean True if session is valid
+   */
+  public static function isAgentAuthentified() {
+    return array_key_exists('logged', $_SESSION)
+      && $_SESSION['logged'] === true;
+  }
+
+  /**
    * Twig filter used to add base URL before passed path
    * 
    * @param string $path Path to prepend base URL to

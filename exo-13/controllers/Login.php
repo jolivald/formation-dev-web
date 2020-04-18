@@ -30,11 +30,13 @@ class Login extends BaseController {
       $_SESSION['accreditation'] = $agent->getNiveauAccreditationA();
       return new IndexView;
     }
-    return $this->dispatchGET($request);
+    return $this->dispatchGET($request, $response);
   }
 
-  protected function dispatchGET(Request $request) : Iview {
-    return new LoginView();
+  protected function dispatchGET(Request $request, Response $response) : Iview {
+    return App::isAgentAuthentified()
+      ? new IndexView
+      : new LoginView;
   }
 
 }
