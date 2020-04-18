@@ -4,7 +4,9 @@ namespace Jonathan\Views;
 
 use Jonathan\Classes\Response;
 
-class Login extends BaseView {
+class Login implements IView {
+
+  public function __construct() {}
 
   public function render(Response $response) : string {
     $response->setParam('title', 'Connexion');

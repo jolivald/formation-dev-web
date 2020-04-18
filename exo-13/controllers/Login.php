@@ -3,16 +3,19 @@
 namespace Jonathan\Controllers;
 
 use Jonathan\Classes\App;
-use Jonathan\Classes\RedirectException;
+//use Jonathan\Classes\RedirectException;
 use Jonathan\Classes\Request;
 use Jonathan\Classes\Response;
 use Jonathan\Views\IView;
 use Jonathan\Views\Index as IndexView;
 use Jonathan\Views\Login as LoginView;
 
-class Login extends BaseController {
+class Login implements IController {
+
+  public function __construct() {}
 
   public function dispatch(Request $request, Response $response) : Iview {
+    $response->setParam('foo', 'bar');
     return $request->getMethod() === 'POST'
       ? $this->dispatchPOST($request, $response)
       : $this->dispatchGET($request, $response);
@@ -25,9 +28,12 @@ class Login extends BaseController {
       ->getRepository('Jonathan\\Models\\Agents')
       ->findOneBy([ 'pseudoA' => $username ]);
     if ($agent && password_verify($password, $agent->getMotDePasseA())) {
+      $accreditation = $agent->getNiveauAccreditationA();
       $_SESSION['logged'] = true;
       $_SESSION['username'] = $username;
-      $_SESSION['accreditation'] = $agent->getNiveauAccreditationA();
+      $_SESSION['accreditation'] = $accreditation;
+      $response->setParam('username', $username);
+      $response->setParam('accreditation', $accreditation);
       return new IndexView;
     }
     return $this->dispatchGET($request, $response);

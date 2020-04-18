@@ -4,5 +4,11 @@
 {% endblock %}
 
 {% block body %}
-<p>index</p>
+
+<p>Bienvenue agent {{ username }} - {{ accreditation }}</p>
+
+{% if accredition == 1 %}
+  <p>lvl 1</p>
+{% endif %}
+
 {% endblock %}

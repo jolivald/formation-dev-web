@@ -1,6 +1,7 @@
 <?php
 
 use Dotenv\Dotenv;
+use Jonathan\Classes\App;
 use Jonathan\Classes\RedirectException;
 use Jonathan\Classes\Request;
 use Jonathan\Classes\Response;
@@ -15,10 +16,16 @@ $loader = require __DIR__.'/vendor/autoload.php';
 // charge les infos sensibles depuis le fichier .env
 Dotenv::createImmutable(__DIR__)->load();
 
+$router   = new Router;
 $request  = new Request($_GET['url']);
 $response = new Response;
-$router   = new Router;
 
+if (App::isAgentAuthentified()){
+  $response->setParam('username', $_SESSION['username']);
+  $response->setParam('accreditation', $_SESSION['accreditation']);
+}
+
+//$router->get('/', 'Jonathan\\Controllers\\Index');
 $router->get('/login', 'Jonathan\\Controllers\\Login');
 $router->post('/login', 'Jonathan\\Controllers\\Login');
 
