@@ -10,6 +10,23 @@
     {% block head %}{% endblock %}
   </head>
   <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <a class="navbar-brand" href="{{ 'index' | url }}">DGSI</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+          aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        {% if username %}
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <span class="nav-text">Bienvenue agent {{ username }}</span>
+          </li>
+        </ul>
+        <a class="nav-link btn btn-primary" href="{{ 'logout' | url }}">Déconnection</a>
+        {% endif %}
+      </div>
+    </nav>
     <main class="container">
       <h1>{{ title }}</h1>
       {% block body %}{% endblock %}

@@ -7,8 +7,30 @@
 
 <p>Bienvenue agent {{ username }} - {{ accreditation }}</p>
 
-{% if accredition == 1 %}
+{% if accreditation == 1 %}
   <p>lvl 1</p>
+{% elseif accreditation == 2 %}
+  <p>lvl 2</p>
+{% else %}
+  <p>lvl 3</p>
 {% endif %}
 
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Rechercher un criminel</h5>
+    <form method="POST" action="{{ 'search' | url }}">
+      <div class="form-group">
+        <label for="last-name">Nom</label>
+        <input type="text" class="form-control" name="last-name" id="last-name" aria-describedby="help-last-name">
+        <small id="help-last-name" class="text-muted">Tout ou partie du nom à rechercher</small>
+      </div>
+      <div class="form-group">
+        <label for="first-name">Prénom</label>
+        <input type="text" class="form-control" name="first-name" id="first-name" aria-describedby="help-first-name">
+        <small id="help-first-name" class="text-muted">Tout ou partie du prénom à rechercher</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+  </div>
+</div>
 {% endblock %}
