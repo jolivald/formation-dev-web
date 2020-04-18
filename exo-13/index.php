@@ -21,6 +21,7 @@ $request  = new Request($_GET['url']);
 $response = new Response;
 
 if (App::isAgentAuthentified()){
+  $response->setParam('logged', true);
   $response->setParam('username', $_SESSION['username']);
   $response->setParam('accreditation', $_SESSION['accreditation']);
 }
@@ -28,6 +29,7 @@ if (App::isAgentAuthentified()){
 //$router->get('/', 'Jonathan\\Controllers\\Index');
 $router->get('/login', 'Jonathan\\Controllers\\Login');
 $router->post('/login', 'Jonathan\\Controllers\\Login');
+$router->get('/logout', 'Jonathan\\Controllers\\Logout');
 
 try {
   $controller = $router->route($request);

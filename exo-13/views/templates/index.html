@@ -4,17 +4,6 @@
 {% endblock %}
 
 {% block body %}
-
-<p>Bienvenue agent {{ username }} - {{ accreditation }}</p>
-
-{% if accreditation == 1 %}
-  <p>lvl 1</p>
-{% elseif accreditation == 2 %}
-  <p>lvl 2</p>
-{% else %}
-  <p>lvl 3</p>
-{% endif %}
-
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Rechercher un criminel</h5>

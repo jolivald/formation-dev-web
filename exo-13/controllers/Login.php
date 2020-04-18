@@ -32,6 +32,7 @@ class Login implements IController {
       $_SESSION['logged'] = true;
       $_SESSION['username'] = $username;
       $_SESSION['accreditation'] = $accreditation;
+      $response->setParam('logged', true);
       $response->setParam('username', $username);
       $response->setParam('accreditation', $accreditation);
       return new IndexView;
