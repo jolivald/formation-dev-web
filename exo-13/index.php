@@ -28,8 +28,10 @@ if (App::isAgentAuthentified()){
 
 //$router->get('/', 'Jonathan\\Controllers\\Index');
 $router->get('/login', 'Jonathan\\Controllers\\Login');
-$router->post('/login', 'Jonathan\\Controllers\\Login');
 $router->get('/logout', 'Jonathan\\Controllers\\Logout');
+
+$router->post('/login', 'Jonathan\\Controllers\\Login');
+$router->post('/search', 'Jonathan\\Controllers\\Search');
 
 try {
   $controller = $router->route($request);
