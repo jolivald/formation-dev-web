@@ -2,6 +2,7 @@
 
 namespace Jonathan\Views;
 
+use Jonathan\Classes\Response;
 use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
 use \Twig\TwigFilter;
@@ -22,7 +23,7 @@ abstract class BaseView implements IView {
     );
   }
 
-  public abstract function render() : string;
+  public abstract function render(Response $response) : string;
 
   /**
    * Get twig template engine

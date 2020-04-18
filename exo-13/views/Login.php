@@ -7,7 +7,7 @@ use Jonathan\Classes\Response;
 class Login extends BaseView {
 
   public function render(Response $response) : string {
-    $params = $response->getParams();
+    $response->setParam('title', 'Connexion');
     return $response->getTwig()->render(
       'login.html',
       $response->getParams()

@@ -25,7 +25,7 @@ class Response {
   public function __construct() {
     $this->_params = [];
     $this->setTwig(new Environment(
-      new FilesystemLoader(__DIR__.'/templates')
+      new FilesystemLoader(__DIR__.'/../views/templates')
     ));
     $this->getTwig()->addFilter(
       new TwigFilter('url', 'Jonathan\Classes\App::prependBaseUrl')
