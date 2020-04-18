@@ -3,14 +3,13 @@
 namespace Jonathan\Controllers;
 
 use Jonathan\Classes\App;
+use Jonathan\Classes\RedirectException;
 use Jonathan\Classes\Request;
 use Jonathan\Views\IView;
 use Jonathan\Views\Index as IndexView;
 use Jonathan\Views\Login as LoginView;
 
 class Login extends BaseController {
-
-  public function __construct(){}
 
   public function dispatch(Request $request) : Iview {
     return $request->getMethod() === 'POST'
@@ -30,8 +29,7 @@ class Login extends BaseController {
       $_SESSION['accreditation'] = $agent->getNiveauAccreditationA();
       return new IndexView;
     }
-    return new LoginView();
-
+    return $this->dispatchGET($request);
   }
 
   protected function dispatchGET(Request $request) : Iview {

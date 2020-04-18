@@ -2,10 +2,16 @@
 
 namespace Jonathan\Views;
 
+use Jonathan\Classes\Response;
+
 class Login extends BaseView {
 
-  public function render() : string {
-    return $this->getTwig()->render('login.html', ['title' => 'test']);
+  public function render(Response $response) : string {
+    $params = $response->getParams();
+    return $response->getTwig()->render(
+      'login.html',
+      $response->getParams()
+    );
   }
 
 }
