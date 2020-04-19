@@ -56,10 +56,10 @@ class Response {
    * Set a specific parameter value
    * 
    * @param string $key Key of the parameter
-   * @param string $value Value of the parameter
+   * @param mixed $value Value of the parameter
    * @return  self
    */ 
-  public function setParam(string $key, string $value) : self {
+  public function setParam(string $key, $value) : self {
     $this->_params[$key] = $value;
     return $this;
   }

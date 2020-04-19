@@ -7,6 +7,7 @@ use Jonathan\Classes\Request;
 use Jonathan\Classes\Response;
 use Jonathan\Views\IView;
 use Jonathan\Views\Index as IndexView;
+use Jonathan\Views\Result as ResultView;
 
 class Search implements IController {
 
@@ -47,8 +48,8 @@ class Search implements IController {
       }
     }
     $criminals = $query->getResult();
-    echo '<pre>'.print_r($criminals, true).'</pre>';
-    return new IndexView;
+    $response->setParam('results', $criminals);
+    return new ResultView;
   }
 
 }
