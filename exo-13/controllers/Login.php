@@ -37,6 +37,10 @@ class Login implements IController {
       $response->setParam('accreditation', $accreditation);
       return new IndexView;
     }
+    $response->setParam('alert', [
+      'type' => 'danger',
+      'message' => 'La connection a échouée.'
+    ]);
     return $this->dispatchGET($request, $response);
   }
 

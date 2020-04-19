@@ -29,6 +29,11 @@
     </nav>
     <main class="container">
       <h1>{{ title }}</h1>
+      {% if alert %}
+      <div class="alert alert-{{ alert.type }}" role="alert">
+        {{ alert.message }}
+      </div>
+      {% endif %}
       {% block body %}{% endblock %}
     </main>
     <!-- Optional JavaScript -->

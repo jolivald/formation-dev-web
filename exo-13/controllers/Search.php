@@ -19,7 +19,10 @@ class Search implements IController {
     $manager = App::getEntityManager();
     if (empty($firstName)){
       if (empty($lastName)){
-        $response->setParam('alert', 'Précisez un terme à rechercher.');
+        $response->setParam('alert', [
+          'type' => 'danger',
+          'message' => 'Précisez un terme à rechercher.'
+        ]);
         return new IndexView;
       } else {
         $query = $manager->createQueryBuilder()
