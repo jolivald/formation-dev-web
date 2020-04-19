@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<!--
+      'nomR' => $criminal->getNomR(),
+      'prenomR' => $criminal->getPrenomR(),
+      'dateNaissanceR' => $criminal->getDateNaissanceR(),
+      'signeDistinctifR' => $criminal->getSigneDistinctifR(),
+      'profilPsyR' => $criminal->getProfilPsyR(),
+      'niveauAccreditation' => $criminal->getNiveauAccreditation(),
+      'nomPhotoR' => $criminal->getNomPhotoR(),
+      'informationsR' => $criminal->getInformationsR(),
+      'derniereAdresseR' => $criminal->getDerniereAdresseR(),
+      'createdAt' => $criminal->getCreatedAt(),
+      'createdBy' => $criminal->getCreatedBy(),
+      'updatedAt' => $criminal->getUpdatedAt(),
+      'updatedBy' => $criminal->getUpdatedBy()
+-->
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ criminal.prenomR | capitalize }} {{ criminal.nomR | capitalize }}</h5>
+    <img class="rounded float-left w-25 pr-3" src="{{ ('public/images/' ~ criminal.nomPhotoR) | url }}" alt="" />
+    <dl>
+      <dt>Nom:</dt>
+      <dd>{{ criminal.nomR | capitalize }}</dd>
+      <dt>Prénom:</dt>
+      <dd>{{ criminal.prenomR | capitalize }}</dd>
+      <dt>Date de naissance</dt>
+      <dd>{{ criminal.dateNaissanceR }}</dd>
+    </dl>
+  </div>
+</div>
+{% endblock %}

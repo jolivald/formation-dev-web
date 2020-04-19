@@ -29,6 +29,7 @@ if (App::isAgentAuthentified()){
 //$router->get('/', 'Jonathan\\Controllers\\Index');
 $router->get('/login', 'Jonathan\\Controllers\\Login');
 $router->get('/logout', 'Jonathan\\Controllers\\Logout');
+$router->get('/criminal/:action/:id', 'Jonathan\\Controllers\\Criminal');
 
 $router->post('/login', 'Jonathan\\Controllers\\Login');
 $router->post('/search', 'Jonathan\\Controllers\\Search');
