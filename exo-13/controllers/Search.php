@@ -51,6 +51,13 @@ class Search implements IController {
       }
     }
     $criminals = $query->getResult();
+    if (count($criminals) == 0){
+      $response->setParam('alert', [
+        'type' => 'info',
+        'message' => 'Aucun criminel ne correspond à votre recherche'
+      ]);
+    }
+    /** @TODO filter criminals by accrediation */
     $response->setParam('results', $criminals);
     return new ResultView;
   }
