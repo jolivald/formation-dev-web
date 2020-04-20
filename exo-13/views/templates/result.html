@@ -16,6 +16,10 @@
       {% for result in results %}
       <li class="list-group-item d-flex flex-wrap">
         <p class="mr-auto">{{ result.prenomR | capitalize }} {{ result.nomR | capitalize }}</p>
+        {% if accreditation == 1 %}
+        <a href="{{ ('criminal/update/' ~ result.idR) | url }}" class="btn btn-primary">Modifier</a>
+        &nbsp;
+        {% endif %}
         <a href="{{ ('criminal/read/' ~ result.idR) | url }}" class="btn btn-primary">Consulter</a>
       </li>
       {% endfor %}

@@ -16,8 +16,12 @@ class Criminal implements IController {
 
   public function dispatch(Request $request, Response $response) : IView {
     switch ($request->getParam(0)){
+      case 'create':
+        return $this->dispatchCreate($request, $response);
       case 'read':
         return $this->dispatchRead($request, $response);
+      case 'update':
+        return $this->dispatchUpdate($request, $response);
     }
   }
 
@@ -78,6 +82,14 @@ class Criminal implements IController {
         ];
       }, $convictions)
     ]);
+    return new CriminalView;
+  }
+
+  protected function dispatchCreate(Request $request, Response $response) : IView {
+    return new CriminalView;
+  }
+
+  protected function dispatchUpdate(Request $request, Response $response) : IView {
     return new CriminalView;
   }
 
