@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ criminal.prenomR | capitalize }} {{ criminal.nomR | capitalize }}</h5>
+    <img class="float-left w-25 pr-3 pb-3" src="{{ ('public/images/' ~ criminal.nomPhotoR) | url }}" alt="" />
+    <dl class="row">
+      <dt class="col-12 col-sm-6 col-md-4">Nom:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.nomR | capitalize }}</dd>
+      <dt class="col-12 col-sm-6 col-md-4">Prénom:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.prenomR | capitalize }}</dd>
+      <dt class="col-12 col-sm-6 col-md-4">Dernière adresse:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.derniereAdresseR }}</dd>
+      {% if accreditation < 3 %}
+      <dt class="col-12 col-sm-6 col-md-4">Date de naissance:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.dateNaissanceR }}</dd>
+      {% endif %}
+    </dl>
+
+    {% if accreditation < 3 %}
+      <h5 style="clear: left;" class="border-bottom">Signe distinctif</h5>
+      <p>{{ criminal.signeDistinctifR }}</p>
+      <h5 class="border-bottom">Profil psychologique</h5>
+      <p>{{ criminal.profilPsyR }}</p>
+      <h5 class="border-bottom">Informations</h5>
+      <p>{{ criminal.profilPsyR }}</p>
+    {% endif %}
+
+    <h5 class="border-bottom" style="clear: left;" >Acolytes</h5>
+    {% if criminal.acolytes | length > 0 %}
+    <ul class="list-group">
+      {% for acolyte in criminal.acolytes %}
+      <li class="list-group-item">
+        <a href="{{ ('acolyte/read/' ~ acolyte.idR) | url }}">
+          {{ acolyte.prenomR }} {{ acolyte.nomR}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Aucun acolyte connu.</p>
+    {% endif %}
+
+    {% if accreditation < 3 %}
+      <h5 class="border-bottom">Signalements</h5>
+      {% if criminal.testimonials | length > 0 %}
+      <ul class="list-group">
+        {% for testimony in criminal.testimonials %}
+        <li class="list-group-item">
+          <a href="{{ ('testimony/read/' ~ testimony.idTemoignage) | url }}">
+            {{ testimony.temoinT }} le {{ testimony.dateS }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>Aucun signalement enregistré.</p>
+      {% endif %}
+
+      <h5 class="border-bottom">Condamnations</h5>
+      {% if criminal.convictions | length > 0 %}
+      <ul class="list-group">
+        {% for conviction in criminal.convictions %}
+        <li class="list-group-item">
+          <a href="{{ ('conviction/read/' ~ conviction.idR) | url }}">
+            {{ conviction.libelleAffaireC }} le {{ conviction.dateC }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>Aucune condamnation enregistrée.</p>
+      {% endif %}
+    {% endif %}
+
+    <p class="card-footer text-muted text-center">
+      Fiche créée le {{ criminal.createdAt }} par {{ criminal.createdBy }}.<br/>
+      Dernière mise à jour le {{ criminal.updatedAt }} par {{ criminal.updatedBy }}.
+    </p>
+  </div>
+</div>
+{% endblock %}

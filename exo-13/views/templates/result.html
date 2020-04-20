@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+{% if results|length > 0 %}
+<div class="card">
+  <div class="card-body">
+    {% if results|length < 2 %}
+    <h5 class="card-title">Criminel correspondant à votre recherche</h5>
+    {% else %}
+    <h5 class="card-title">Criminels correspondants à votre recherche</h5>
+    {% endif %}
+    <ul class="list-group">
+      {% for result in results %}
+      <li class="list-group-item d-flex flex-wrap">
+        <p class="mr-auto">{{ result.prenomR | capitalize }} {{ result.nomR | capitalize }}</p>
+        {% if accreditation == 1 %}
+        <a href="{{ ('criminal/update/' ~ result.idR) | url }}" class="btn btn-primary">Modifier</a>
+        &nbsp;
+        {% endif %}
+        <a href="{{ ('criminal/read/' ~ result.idR) | url }}" class="btn btn-primary">Consulter</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
