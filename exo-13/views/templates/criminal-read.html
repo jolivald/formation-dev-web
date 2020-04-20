@@ -4,33 +4,30 @@
 {% endblock %}
 
 {% block body %}
-<!--
-      'nomR' => $criminal->getNomR(),
-      'prenomR' => $criminal->getPrenomR(),
-      'dateNaissanceR' => $criminal->getDateNaissanceR(),
-      'signeDistinctifR' => $criminal->getSigneDistinctifR(),
-      'profilPsyR' => $criminal->getProfilPsyR(),
-      'niveauAccreditation' => $criminal->getNiveauAccreditation(),
-      'nomPhotoR' => $criminal->getNomPhotoR(),
-      'informationsR' => $criminal->getInformationsR(),
-      'derniereAdresseR' => $criminal->getDerniereAdresseR(),
-      'createdAt' => $criminal->getCreatedAt(),
-      'createdBy' => $criminal->getCreatedBy(),
-      'updatedAt' => $criminal->getUpdatedAt(),
-      'updatedBy' => $criminal->getUpdatedBy()
--->
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">{{ criminal.prenomR | capitalize }} {{ criminal.nomR | capitalize }}</h5>
-    <img class="rounded float-left w-25 pr-3" src="{{ ('public/images/' ~ criminal.nomPhotoR) | url }}" alt="" />
-    <dl>
-      <dt>Nom:</dt>
-      <dd>{{ criminal.nomR | capitalize }}</dd>
-      <dt>Prénom:</dt>
-      <dd>{{ criminal.prenomR | capitalize }}</dd>
-      <dt>Date de naissance</dt>
-      <dd>{{ criminal.dateNaissanceR }}</dd>
+    <img class="float-left w-25 pr-3 pb-3" src="{{ ('public/images/' ~ criminal.nomPhotoR) | url }}" alt="" />
+    <dl class="row">
+      <dt class="col-12 col-sm-6 col-md-4">Nom:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.nomR | capitalize }}</dd>
+      <dt class="col-12 col-sm-6 col-md-4">Prénom:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.prenomR | capitalize }}</dd>
+      <dt class="col-12 col-sm-6 col-md-4">Date de naissance:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.dateNaissanceR }}</dd>
+      <dt class="col-12 col-sm-6 col-md-4">Dernière adresse:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.derniereAdresseR }}</dd>
     </dl>
+    <h5 style="clear: left;" class="border-bottom">Signe distinctif</h5>
+    <p>{{ criminal.signeDistinctifR }}</p>
+    <h5 class="border-bottom">Profil psychologique</h5>
+    <p>{{ criminal.profilPsyR }}</p>
+    <h5 class="border-bottom">Informations</h5>
+    <p>{{ criminal.profilPsyR }}</p>
+    <p class="card-footer text-muted text-center">
+      Fiche créée le {{ criminal.createdAt }} par {{ criminal.createdBy }}.<br/>
+      Dernière mise à jour le {{ criminal.updatedAt }} par {{ criminal.updatedBy }}.
+    </p>
   </div>
 </div>
 {% endblock %}

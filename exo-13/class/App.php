@@ -2,6 +2,7 @@
 
 namespace Jonathan\Classes;
 
+use Carbon\Carbon;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
@@ -63,6 +64,23 @@ class App {
    */
   public static function prependBaseUrl($path) {
      return str_replace('index.php', '', $_SERVER['SCRIPT_NAME']).$path;
+  }
+
+  /**
+   * Translate a date to french
+   * 
+   * @param DateTime $date Date to translate
+   * @return string Formatted date string
+   */
+  public static function formatDate($date) {
+    $carbon = new Carbon($date, 'Europe/Paris');
+    $carbon->locale('fr');
+    return implode(' ', [
+      $carbon->dayName,
+      $carbon->day,
+      $carbon->monthName,
+      $carbon->year
+    ]);
   }
   
 }

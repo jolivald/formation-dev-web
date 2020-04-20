@@ -2,7 +2,8 @@
 
 namespace Jonathan\Controllers;
 
-use Doctrine\ORM\AbstractQuery;
+//use Doctrine\ORM\AbstractQuery;
+use Carbon\Carbon;
 use Jonathan\Classes\App;
 use Jonathan\Classes\Request;
 use Jonathan\Classes\Response;
@@ -30,10 +31,7 @@ class Criminal implements IController {
       ->setParameter('id', $request->getParam(1))
       ->getQuery()
       ->getSingleResult();
-      //->getSingleResult(AbstractQuery::HYDRATE_ARRAY);
-    /*$acolytes = $criminal->getRecherchesIdR1();
-    echo '<pre>'.print_r($acolytes, true).'</pre>';
-    $acolytes->map(function($acolyte) {
+    /*$acolytes = $criminal->getRecherchesIdR1()->map(function($acolyte) {
       echo '<pre>'.print_r($acolyte, true).'</pre>';
       return $acolyte;
     });*/
@@ -44,16 +42,16 @@ class Criminal implements IController {
     $response->setParam('criminal', [
       'nomR' => $criminal->getNomR(),
       'prenomR' => $criminal->getPrenomR(),
-      'dateNaissanceR' => $criminal->getDateNaissanceR()->format('d M Y'),
+      'dateNaissanceR' => App::formatDate($criminal->getDateNaissanceR()),
       'signeDistinctifR' => $criminal->getSigneDistinctifR(),
       'profilPsyR' => $criminal->getProfilPsyR(),
       'niveauAccreditation' => $criminal->getNiveauAccreditation(),
       'nomPhotoR' => $criminal->getNomPhotoR(),
       'informationsR' => $criminal->getInformationsR(),
       'derniereAdresseR' => $criminal->getDerniereAdresseR(),
-      'createdAt' => $criminal->getCreatedAt(),
+      'createdAt' => App::formatDate($criminal->getCreatedAt()),
       'createdBy' => $criminal->getCreatedBy(),
-      'updatedAt' => $criminal->getUpdatedAt(),
+      'updatedAt' => App::formatDate($criminal->getUpdatedAt()),
       'updatedBy' => $criminal->getUpdatedBy()
     ]);
     return new CriminalView;
