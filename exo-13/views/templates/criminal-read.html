@@ -24,6 +24,38 @@
     <p>{{ criminal.profilPsyR }}</p>
     <h5 class="border-bottom">Informations</h5>
     <p>{{ criminal.profilPsyR }}</p>
+
+    <h5 class="border-bottom">Acolytes</h5>
+    {% if criminal.acolytes | length > 0 %}
+    <ul class="list-group">
+      {% for acolyte in criminal.acolytes %}
+      <li class="list-group-item">
+        <a href="{{ ('acolyte/read/' ~ acolyte.idR) | url }}">
+          {{ acolyte.prenomR }} {{ acolyte.nomR}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Aucun acolyte connu.</p>
+    {% endif %}
+
+    <h5 class="border-bottom">Signalements</h5>
+    {% if criminal.testimonials | length > 0 %}
+    <ul class="list-group">
+      {% for testimony in criminal.testimonials %}
+      <li class="list-group-item">
+        <a href="{{ ('testimony/read/' ~ testimony.idTemoignage) | url }}">
+          {{ testimony.temoinT }} le {{ testimony.dateS }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Pas de signalement enregistré.</p>
+    {% endif %}
+
+
     <p class="card-footer text-muted text-center">
       Fiche créée le {{ criminal.createdAt }} par {{ criminal.createdBy }}.<br/>
       Dernière mise à jour le {{ criminal.updatedAt }} par {{ criminal.updatedBy }}.

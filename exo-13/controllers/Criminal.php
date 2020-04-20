@@ -31,14 +31,6 @@ class Criminal implements IController {
       ->setParameter('id', $request->getParam(1))
       ->getQuery()
       ->getSingleResult();
-    /*$acolytes = $criminal->getRecherchesIdR1()->map(function($acolyte) {
-      echo '<pre>'.print_r($acolyte, true).'</pre>';
-      return $acolyte;
-    });*/
-    /*$temoingnages = $criminal->getTemoignagesIdTemoignage()->map(function($temoignage) {
-      echo '<pre>'.print_r($temoignage, true).'</pre>';
-      return $temoignage;
-    });*/
     $response->setParam('criminal', [
       'nomR' => $criminal->getNomR(),
       'prenomR' => $criminal->getPrenomR(),
@@ -52,7 +44,23 @@ class Criminal implements IController {
       'createdAt' => App::formatDate($criminal->getCreatedAt()),
       'createdBy' => $criminal->getCreatedBy(),
       'updatedAt' => App::formatDate($criminal->getUpdatedAt()),
-      'updatedBy' => $criminal->getUpdatedBy()
+      'updatedBy' => $criminal->getUpdatedBy(),
+      'acolytes' => $criminal->getRecherchesIdR1()
+        ->map(function($acolyte) {
+          return [
+            'idR' => $acolyte->getIdR(),
+            'nomR' => $acolyte->getNomR(),
+            'prenomR' => $acolyte->getPrenomR()
+          ];
+        }),
+      'testimonials' => $criminal->getTemoignagesIdTemoignage()
+        ->map(function($testimony) {
+          return [
+            'idTemoignage' => $testimony->getIdTemoignage(),
+            'temoinT' => $testimony->getTemoinT(),
+            'dateS' => App::formatDate($testimony->getDateS())
+          ];
+        })
     ]);
     return new CriminalView;
   }
