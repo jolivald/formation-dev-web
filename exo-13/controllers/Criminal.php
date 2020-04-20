@@ -22,15 +22,24 @@ class Criminal implements IController {
   }
 
   protected function dispatchRead(Request $request, Response $response) : IView {
+    $id = $request->getParam(1);
     $criminal = App::getEntityManager()
       ->createQueryBuilder()
       ->select('r')
       ->from('Jonathan\\Models\\Recherches', 'r')
       ->where('r.idR = :id')
       ->setMaxResults(1)
-      ->setParameter('id', $request->getParam(1))
+      ->setParameter('id', $id)
       ->getQuery()
       ->getSingleResult();
+    $convictions = App::getEntityManager()
+      ->createQueryBuilder()
+      ->select('c')
+      ->from('Jonathan\\Models\\Condamnations', 'c')
+      ->where('c.idC = :id')
+      ->setParameter('id', $id)
+      ->getQuery()
+      ->getResult();
     $response->setParam('criminal', [
       'nomR' => $criminal->getNomR(),
       'prenomR' => $criminal->getPrenomR(),
@@ -60,7 +69,14 @@ class Criminal implements IController {
             'temoinT' => $testimony->getTemoinT(),
             'dateS' => App::formatDate($testimony->getDateS())
           ];
-        })
+        }),
+      'convictions' => array_map(function($conviction) {
+        return [
+          'idC' => $conviction->getIdC(),
+          'libelleAffaireC' => $conviction->getLibelleAffaireC(),
+          'dateC' => App::formatDate($conviction->getDateC())
+        ];
+      }, $convictions)
     ]);
     return new CriminalView;
   }

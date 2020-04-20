@@ -58,7 +58,22 @@
         {% endfor %}
       </ul>
       {% else %}
-      <p>Pas de signalement enregistré.</p>
+      <p>Aucun signalement enregistré.</p>
+      {% endif %}
+
+      <h5 class="border-bottom">Condamnations</h5>
+      {% if criminal.convictions | length > 0 %}
+      <ul class="list-group">
+        {% for conviction in criminal.convictions %}
+        <li class="list-group-item">
+          <a href="{{ ('conviction/read/' ~ conviction.idR) | url }}">
+            {{ conviction.libelleAffaireC }} le {{ conviction.dateC }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>Aucune condamnation enregistrée.</p>
       {% endif %}
     {% endif %}
 
