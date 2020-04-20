@@ -13,19 +13,24 @@
       <dd class="col-12 col-sm-6 col-md-8">{{ criminal.nomR | capitalize }}</dd>
       <dt class="col-12 col-sm-6 col-md-4">Prénom:</dt>
       <dd class="col-12 col-sm-6 col-md-8">{{ criminal.prenomR | capitalize }}</dd>
-      <dt class="col-12 col-sm-6 col-md-4">Date de naissance:</dt>
-      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.dateNaissanceR }}</dd>
       <dt class="col-12 col-sm-6 col-md-4">Dernière adresse:</dt>
       <dd class="col-12 col-sm-6 col-md-8">{{ criminal.derniereAdresseR }}</dd>
+      {% if accreditation < 3 %}
+      <dt class="col-12 col-sm-6 col-md-4">Date de naissance:</dt>
+      <dd class="col-12 col-sm-6 col-md-8">{{ criminal.dateNaissanceR }}</dd>
+      {% endif %}
     </dl>
-    <h5 style="clear: left;" class="border-bottom">Signe distinctif</h5>
-    <p>{{ criminal.signeDistinctifR }}</p>
-    <h5 class="border-bottom">Profil psychologique</h5>
-    <p>{{ criminal.profilPsyR }}</p>
-    <h5 class="border-bottom">Informations</h5>
-    <p>{{ criminal.profilPsyR }}</p>
 
-    <h5 class="border-bottom">Acolytes</h5>
+    {% if accreditation < 3 %}
+      <h5 style="clear: left;" class="border-bottom">Signe distinctif</h5>
+      <p>{{ criminal.signeDistinctifR }}</p>
+      <h5 class="border-bottom">Profil psychologique</h5>
+      <p>{{ criminal.profilPsyR }}</p>
+      <h5 class="border-bottom">Informations</h5>
+      <p>{{ criminal.profilPsyR }}</p>
+    {% endif %}
+
+    <h5 class="border-bottom" style="clear: left;" >Acolytes</h5>
     {% if criminal.acolytes | length > 0 %}
     <ul class="list-group">
       {% for acolyte in criminal.acolytes %}
@@ -40,21 +45,22 @@
     <p>Aucun acolyte connu.</p>
     {% endif %}
 
-    <h5 class="border-bottom">Signalements</h5>
-    {% if criminal.testimonials | length > 0 %}
-    <ul class="list-group">
-      {% for testimony in criminal.testimonials %}
-      <li class="list-group-item">
-        <a href="{{ ('testimony/read/' ~ testimony.idTemoignage) | url }}">
-          {{ testimony.temoinT }} le {{ testimony.dateS }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>Pas de signalement enregistré.</p>
+    {% if accreditation < 3 %}
+      <h5 class="border-bottom">Signalements</h5>
+      {% if criminal.testimonials | length > 0 %}
+      <ul class="list-group">
+        {% for testimony in criminal.testimonials %}
+        <li class="list-group-item">
+          <a href="{{ ('testimony/read/' ~ testimony.idTemoignage) | url }}">
+            {{ testimony.temoinT }} le {{ testimony.dateS }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>Pas de signalement enregistré.</p>
+      {% endif %}
     {% endif %}
-
 
     <p class="card-footer text-muted text-center">
       Fiche créée le {{ criminal.createdAt }} par {{ criminal.createdBy }}.<br/>
