@@ -39,7 +39,7 @@ class Login implements IController {
     }
     $response->setParam('alert', [
       'type' => 'danger',
-      'message' => 'La connection a échouée.'
+      'message' => 'La connexion a échouée.'
     ]);
     return $this->dispatchGET($request, $response);
   }
