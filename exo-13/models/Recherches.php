@@ -303,4 +303,187 @@ class Recherches
         return $this->updatedBy;
     }
     
+
+    /**
+     * Set the value of nomR
+     *
+     * @param  string  $nomR
+     *
+     * @return  self
+     */ 
+    public function setNomR(string $nomR)
+    {
+        $this->nomR = $nomR;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of prenomR
+     *
+     * @param  string  $prenomR
+     *
+     * @return  self
+     */ 
+    public function setPrenomR(string $prenomR)
+    {
+        $this->prenomR = $prenomR;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of dateNaissanceR
+     *
+     * @param  \DateTime  $dateNaissanceR
+     *
+     * @return  self
+     */ 
+    public function setDateNaissanceR(\DateTime $dateNaissanceR)
+    {
+        $this->dateNaissanceR = $dateNaissanceR;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of signeDistinctifR
+     *
+     * @param  string  $signeDistinctifR
+     *
+     * @return  self
+     */ 
+    public function setSigneDistinctifR(string $signeDistinctifR)
+    {
+        $this->signeDistinctifR = $signeDistinctifR;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of profilPsyR
+     *
+     * @param  string|null  $profilPsyR
+     *
+     * @return  self
+     */ 
+    public function setProfilPsyR($profilPsyR)
+    {
+        $this->profilPsyR = $profilPsyR;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of niveauAccreditation
+     *
+     * @param  int  $niveauAccreditation
+     *
+     * @return  self
+     */ 
+    public function setNiveauAccreditation(int $niveauAccreditation)
+    {
+        $this->niveauAccreditation = $niveauAccreditation;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of nomPhotoR
+     *
+     * @param  string  $nomPhotoR
+     *
+     * @return  self
+     */ 
+    public function setNomPhotoR(string $nomPhotoR)
+    {
+        $this->nomPhotoR = $nomPhotoR;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of informationsR
+     *
+     * @param  string|null  $informationsR
+     *
+     * @return  self
+     */ 
+    public function setInformationsR($informationsR)
+    {
+        $this->informationsR = $informationsR;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of derniereAdresseR
+     *
+     * @param  string  $derniereAdresseR
+     *
+     * @return  self
+     */ 
+    public function setDerniereAdresseR(string $derniereAdresseR)
+    {
+        $this->derniereAdresseR = $derniereAdresseR;
+
+        return $this;
+    }
+    
+
+    /**
+     * Set the value of createdAt
+     *
+     * @param  \DateTime  $createdAt
+     *
+     * @return  self
+     */ 
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of createdBy
+     *
+     * @param  string  $createdBy
+     *
+     * @return  self
+     */ 
+    public function setCreatedBy(string $createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @param  \DateTime  $updatedAt
+     *
+     * @return  self
+     */ 
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of updatedBy
+     *
+     * @param  string  $updatedBy
+     *
+     * @return  self
+     */ 
+    public function setUpdatedBy(string $updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
 }

@@ -48,8 +48,20 @@ class Response {
    * @return  self
    */ 
   public function setParams(array $params) : self {
-    $this->_params = $params;
+    $this->_params = array_merge($this->_params, $params);
     return $this;
+  }
+
+  /**
+   * Get a specific parameter value
+   * 
+   * @param string $key Key of the parameter
+   * @return string|null Parameter value or null if not found
+   */
+  public function getParam(string $key) {
+    return array_key_exists($key, $this->_params)
+      ? $this->_params[$key]
+      : null;
   }
 
   /**

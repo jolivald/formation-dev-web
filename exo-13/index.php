@@ -29,10 +29,13 @@ if (App::isAgentAuthentified()){
 //$router->get('/', 'Jonathan\\Controllers\\Index');
 $router->get('/login', 'Jonathan\\Controllers\\Login');
 $router->get('/logout', 'Jonathan\\Controllers\\Logout');
+$router->get('/criminal/:action', 'Jonathan\\Controllers\\Criminal');
 $router->get('/criminal/:action/:id', 'Jonathan\\Controllers\\Criminal');
 
 $router->post('/login', 'Jonathan\\Controllers\\Login');
 $router->post('/search', 'Jonathan\\Controllers\\Search');
+$router->post('/criminal/:action', 'Jonathan\\Controllers\\Criminal');
+$router->post('/criminal/:action/:id', 'Jonathan\\Controllers\\Criminal');
 
 try {
   $controller = $router->route($request);

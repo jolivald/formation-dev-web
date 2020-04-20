@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Ajouter</h5>
+    <form enctype="multipart/form-data" method="POST" action="{{ 'criminal/create' | url }}">
+      <div class="form-group">
+        <label for="last-name">Nom</label>
+        <input type="text" name="last-name" id="last-name" class="form-control" value="{{ values['last-name'] }}">
+      </div>
+      <div class="form-group">
+        <label for="first-name">Prénom</label>
+        <input type="text" name="first-name" id="first-name" class="form-control" value="{{ values['first-name'] }}">
+      </div>
+      <div class="form-group">
+        <label for="birthday">Date de naissance</label>
+        <input type="date" name="birthday" id="birthday" class="form-control" min="1000-01-01" max="3000-12-31" value="{{ values['birthday'] }}">
+      </div>
+      <div class="form-group">
+        <label for="distinctive-sign">Signe distinctif</label>
+        <input type="text" name="distinctive-sign" id="distinctive-sign" class="form-control" value="{{ values['distinctive-sign'] }}">
+      </div>
+      <div class="form-group">
+        <label for="psy-profile">Profil psychologique</label>
+        <textarea class="form-control" name="psy-profile" id="psy-profile" rows="3">{{ values['psy-profile'] }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="accreditation">Niveau d'accréditation</label>
+        <input type="number" name="accreditation" id="accreditation" class="form-control" min="1" max="3" value="{{ values['accreditation'] }}">
+      </div>
+      <div class="form-group">
+        <label for="photo">Photographie</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="photo" name="photo">
+          <label class="custom-file-label" for="photo">Ajouter une image</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="informations">Informations</label>
+        <textarea class="form-control" name="informations" id="informations" rows="3">{{ values['informations'] }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="last-address">Dernière adresse</label>
+        <input type="text" name="last-address" id="last-address" class="form-control" value="{{ values['last-address'] }}">
+      </div>
+      <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

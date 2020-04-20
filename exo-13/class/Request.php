@@ -106,10 +106,22 @@ class Request {
    * @param int $index Parameter index
    * @return string|null URL parameter value or null if not found
    */
-  public function getParam(int $index) : string {
+  public function getParam(int $index) {
     return array_key_exists($index, $this->_params)
       ? $this->_params[$index]
       : null;
+  }
+
+  /**
+   * Set a request URL parameter by its index
+   * 
+   * @param int $index Parameter index
+   * @param mixed $value Parameter value
+   * @return string|null URL parameter value or null if not found
+   */
+  public function setParam(int $index, $value) {
+    $this->_params[$index] = $value;
+    return $this;
   }
 
   /**
