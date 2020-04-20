@@ -22,9 +22,8 @@ class Criminal implements IController {
       case 'create':
         return $this->dispatchCreate($request, $response);
       case 'read':
+      default:
         return $this->dispatchRead($request, $response);
-      case 'update':
-        return $this->dispatchUpdate($request, $response);
     }
   }
 
@@ -163,13 +162,6 @@ class Criminal implements IController {
       'message' => 'La fiche a été enregistrée en base de données.'
     ]);
     return $this->dispatchRead($request, $response);
-  }
-
-
-  protected function dispatchUpdate(Request $request, Response $response) : IView {
-    $view = new CriminalView;
-    $view->setTemplate('criminal-update.html');
-    return $view;
   }
 
 }
