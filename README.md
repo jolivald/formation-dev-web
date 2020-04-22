@@ -18,5 +18,5 @@ Ce dépôt contient les exercices réalisés durant la formation.
  11. [Conception de base de données](exo-11)
  12. [Templating](exo-12)
  13. [Projet criminels](exo-13)
- 
+ 14. [Functions PHP](exo-14)
  
