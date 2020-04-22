@@ -73,7 +73,7 @@ function plusPetit2(array $list) : int {
   if (empty($list)){ return null; }
   return array_reduce($list, function ($memo, $value){
     return $value < $memo ? $value : $memo;
-  }, 0);
+  }, PHP_INT_MAX);
 }
 
 // Exercice 15
