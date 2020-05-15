@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX Ice and Fire</title>
+  <script src="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4"></script>
+  <script src="script.js"></script>
+  <style>
+    body {
+      margin: 2em 10%;
+    }
+    hr {
+      border: none;
+      border-bottom: 1px solid gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>AJAX Ice and Fire</h2>
+  <hr />
+
+  <label for="catalog">Catalogue:</label>
+  <select id="catalog">
+    <option value="books">Livres</option>
+    <option value="characters">Personnages</option>
+    <option value="houses">Maisons</option>
+  </select>
+
+  <label for="id">Identifiant:</label>
+  <input type="number" id="id" value="1" min="1"/>
+
+  <button id="send">Envoyer la requête</button>
+  <hr />
+
+  <code id="result"></code>
+
+</body>
+</html>
