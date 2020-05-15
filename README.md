@@ -21,3 +21,4 @@ Ce dépôt contient les exercices réalisés durant la formation.
  14. [Functions PHP](exo-14)
  15. [Pseudo code 2](exo-15)
  16. [Intégration](exo-16)
+ 17. [AJAX & API](exo-17)
