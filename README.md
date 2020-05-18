@@ -22,3 +22,4 @@ Ce dépôt contient les exercices réalisés durant la formation.
  15. [Pseudo code 2](exo-15)
  16. [Intégration](exo-16)
  17. [AJAX & API](exo-17)
+ 18. [JQuery & API](exo-18)

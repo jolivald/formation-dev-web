@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JQuery Ice and Fire</title>
+  <style>
+    body {
+      margin: 2em 10%;
+    }
+    hr {
+      border: none;
+      border-bottom: 1px dashed gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>AJAX Ice and Fire</h2>
+  <hr />
+
+  <label for="catalog">Catalogue:</label>
+  <select id="catalog">
+    <option value="books">Livres</option>
+    <option value="characters">Personnages</option>
+    <option value="houses">Maisons</option>
+  </select>
+
+  <label for="id">Identifiant:</label>
+  <input type="number" id="id" value="1" min="1"/>
+
+  <button id="send">Envoyer la requête</button>
+  <hr />
+
+  <code id="result"></code>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4"></script>
+  <script>
+
+const catalogInput = $('#catalog');
+const idInput      = $('#id');
+const sendButton   = $('#send');
+const resultCode   = $('#result');
+
+$('#send').click(event => {
+  event.preventDefault();
+  const uri = catalogInput.val() + '/' + idInput.val();
+  resultCode.text('Chargement...');
+  $.ajax({
+    url: 'https://www.anapioficeandfire.com/api/' + uri,
+    method: 'GET',
+    dataType: 'json',
+    success(data) {
+      const formatter = new JSONFormatter(data);
+      resultCode.empty();
+      resultCode.append(formatter.render());
+    },
+    error() {
+      resultCode.text('Erreur de chargement');
+    }
+  })
+});
+
+  </script>
+</body>
+</html>
