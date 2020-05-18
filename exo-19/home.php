@@ -35,6 +35,6 @@ hr {
     L'adresse email: <strong><?= htmlspecialchars($_SESSION['email']) ?></strong> 
     est associée avec l'identifiant: <strong><?= $_SESSION['id'] ?></strong>
   </p>
-  <p><a href="index.php">Retour aux formulaires</a></p>
+  <p><a href="index.php">Retour au formulaire</a></p>
 </body>
 </html>
