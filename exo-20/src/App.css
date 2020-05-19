@@ -10,7 +10,9 @@ body {
 #random {
   float: right;
 }
+.slider {
+  display: flex;
+}
 .slider label {
-  display: inline-block;
-  width: 50px;
+  flex: 0 0 50px;
 }

@@ -9,6 +9,7 @@ const Slider = ({ label, value, onChange }) => {
         {...{ id, value }}
         onChange={event => onChange(event.target.value)}
       />
+      <span>{value}</span>
     </div>
   );
 };
