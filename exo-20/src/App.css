@@ -1,0 +1,25 @@
+body {
+  width: 50%;
+  margin: auto;
+  
+}
+#demo {
+  height: 150px;
+  padding: .5em;
+  margin-bottom: 1em;
+  color: #fff;
+  text-shadow: 0 0 1px #000;
+  font-family: monospace;
+}
+#random {
+  float: right;
+}
+.slider {
+  display: flex;
+}
+.slider label {
+  flex: 0 0 50px;
+}
+.slider > *:not(:first-child) {
+  margin-left: .5em;
+}
