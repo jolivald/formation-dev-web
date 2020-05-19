@@ -5,7 +5,11 @@ body {
 }
 #demo {
   height: 150px;
-  margin-bottom: 2em;
+  padding: .5em;
+  margin-bottom: 1em;
+  color: #fff;
+  text-shadow: 0 0 1px #000;
+  font-family: monospace;
 }
 #random {
   float: right;
@@ -15,4 +19,7 @@ body {
 }
 .slider label {
   flex: 0 0 50px;
+}
+.slider > *:not(:first-child) {
+  margin-left: .5em;
 }
