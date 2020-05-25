@@ -25,5 +25,5 @@ Ce dépôt contient les exercices réalisés durant la formation.
  18. [JQuery & API](exo-18)
  19. [AJAX login/register](exo-19)
  20. [ReactJS](exo-20)
- 
+ 21. [Jeu de morpion](exo-21)
  
