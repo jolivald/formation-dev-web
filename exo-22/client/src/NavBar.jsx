@@ -11,17 +11,23 @@ TODO:
  if logged => icon buttons profile & messages
  else => button login/register
 */
-const NavBar = ({ buttonLabel, onClick }) => {
+const NavBar = ({ buttonLabel, onClick, accreditation }) => {
   return (
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          <Link href="/" color="inherit">
-          PetNet
-          </Link>
+          <Link href="/" color="inherit">PetNet</Link>
         </Typography>
-        <LockOpen />
-        <Button onClick={onClick} color="inherit">{buttonLabel}</Button>
+        {accreditation === 0 && (
+          <Button onClick={onClick} color="inherit">
+            <LockOpen />
+            {buttonLabel}
+          </Button>
+        )}
+        {accreditation > 0 && (<>
+          <Button color="inherit">Messages</Button>
+          <Button href="/logout" color="inherit">Déconnexion</Button>
+        </>)}
       </Toolbar>
     </AppBar>
   );

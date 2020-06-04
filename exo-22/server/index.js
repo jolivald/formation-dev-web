@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -21,33 +22,42 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(session({ secret: 'petnet secret cookie flavor' }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
 // serve static react app
 app.use(express.static(clientPath));
 app.get('/', (req, res) => {
-  console.log('cookies', req.cookies); 
+  res.cookie('user', {
+    username: req.cookie.username || 'anonyme',
+    accreditation: req.cookie.accreditation || 0
+  });
   res.sendFile(path.join(clientPath, 'index.html'));
 });
 
 // json api
 app.post(
   '/login',
-  passport.authenticate('local'),
+  passport.authenticate('local', {
+    failureFlash: true
+  }),
   (req, res) => {
+    const userDetail = {
+      username: req.user.username,
+      accreditation: req.user.accreditation
+    };
+    //res.cookie('user', userDetail);
     res.json({
       success: true,
-      payload: {
-        username: req.user.username,
-        accreditation: req.user.accreditation
-      }
+      payload: userDetail
     });
   }
 );
 
 app.get('/logout', (req, res) => {
-  console.log('logout', req.user.username);
+  req.logout();
+  res.redirect('/');
 });
 
 app.post('/register', (req, res, next) => {
@@ -58,33 +68,37 @@ app.post('/register', (req, res, next) => {
       error: 'Erreur de confirmation du mot de passe'
     });
   }
+  // TODO more validation
   const newUser = new User({
     username,
     email,
     password: password1,
-    accreditation: 0,
+    accreditation: 1,
     createdAt: Date.now(),
-    createdBy: 'API server'
+    createdBy: username
   });
   User.register(newUser, password1)
     .then(user => user.save())
     .catch(err => res.json({
       error: err.message
     }))
-    .then(user => {
+    .then(() => {
+      const userDetail = {
+        username: newUser.username,
+        accreditation: newUser.accreditation
+      };
+      //res.cookie('user', userDetail);
       res.json({
         success: 'Utilisateur enregistré avec succès',
-        payload: {
-          username: req.user.username,
-          accreditation: req.user.accreditation
-        }
+        payload: userDetail
       });
       return true;
     });
 });
 
 // passport config
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(User.createStrategy());
+//passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

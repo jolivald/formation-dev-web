@@ -1,10 +1,16 @@
 import React, { useState, useRef } from 'react';
+import Container from '@material-ui/core/Container';
 import fetch from 'cross-fetch';
 import NavBar from './NavBar';
 import LoginDialog from './LoginDialog';
-//import './App.css';
+import VisitorView from './VisitorView';
+import UserView from './UserView';
+import AdminView from './AdminView';
+
+import './App.css';
 
 const App = () => {
+  const [cred, setCred] = useState(0);
   const [open, setOpen] = useState(false);
   const [tab, setTab] = useState(0);
   const loginRef = useRef(null);
@@ -33,15 +39,26 @@ const App = () => {
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json())
-      .then(jsonData => console.log(jsonData));
-    //console.log('submit', data);
+      .then(response => response.status === 200
+        ? response.json()
+        : { error: 'Identifiants incorrects'}
+      )
+      .then(result => {
+        console.log(result);
+        if (result.success){
+          setCred(result.payload.accreditation);
+          setOpen(false);
+        } else {
+          alert(result.error);
+        }
+      });
   };
   return (
     <div className="app">
       <NavBar
         buttonLabel={labels[tab]}
         onClick={handleClose}
+        accreditation={cred}
       />
       <LoginDialog
         {...{ open, tab, labels, loginRef, registerRef }}
@@ -49,6 +66,11 @@ const App = () => {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
+      <Container maxWidth="md">
+        {cred === 0 && <VisitorView />}
+        {cred === 1 && <UserView />}
+        {cred === 2 && <AdminView />}
+      </Container>
     </div>
   );
 }
