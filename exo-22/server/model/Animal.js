@@ -9,7 +9,7 @@ const AnimalSchema = new mongoose.Schema({
   geolocation: Boolean,
   createdAt: Date,
   createdBy: String,
-  updatedAt: Date,
+  updatedAt: { type: Date, default: Date.now },
   updatedBy: String
 });
 

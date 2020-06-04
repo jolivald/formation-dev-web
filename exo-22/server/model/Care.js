@@ -8,7 +8,7 @@ const CareSchema = new mongoose.Schema({
   employee: ObjectId, // care has one user
   createdAt: Date,
   createdBy: String,
-  updatedAt: Date,
+  updatedAt: { type: Date, default: Date.now },
   updatedBy: String
 });
 

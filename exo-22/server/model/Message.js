@@ -9,7 +9,7 @@ const MessageSchema = new mongoose.Schema({
   receiver: ObjectId, // message has one receiver
   createdAt: Date,
   createdBy: String,
-  updatedAt: Date,
+  updatedAt: { type: Date, default: Date.now },
   updatedBy: String
 });
 

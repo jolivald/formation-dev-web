@@ -8,16 +8,13 @@ const UserSchema = new mongoose.Schema({
   username: String,
   password: String,
   email: String,
-  fistName: String,
-  lastName: String,
-  phone: Number,
   accreditation: Number,
   animals: [AnimalSchema],           // user has many animals
   messages: [MessageSchema],         // user has many messages
   appointments: [AppointmentSchema], // user has many appointments
   createdAt: Date,
   createdBy: String,
-  updatedAt: Date,
+  updatedAt: { type: Date, default: Date.now },
   updatedBy: String
 });
 
