@@ -36,14 +36,13 @@ app.post(
   '/login',
   passport.authenticate('local'),
   (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({
+    res.json({
       success: true,
       payload: {
         username: req.user.username,
         accreditation: req.user.accreditation
       }
-    }));
+    });
   }
 );
 
@@ -55,9 +54,9 @@ app.post('/register', (req, res, next) => {
   const { username, email, password1, password2 } = req.body;
   res.setHeader('Content-Type', 'application/json');
   if (password1 !== password2){
-    return res.end(JSON.stringify({
+    return res.json({
       error: 'Erreur de confirmation du mot de passe'
-    }));
+    });
   }
   const newUser = new User({
     username,
@@ -67,23 +66,21 @@ app.post('/register', (req, res, next) => {
     createdAt: Date.now(),
     createdBy: 'API server'
   });
-  User.register(newUser, password1, (err) => {
-    if (err) {
-      return res.end(JSON.stringify({
-        error: 'Un problème est survenu lors de l\'inscription'
-      }));
-    }
-    res.end(JSON.stringify({
-      success: 'Utilisateur enregistré avec succès'
-    }));
-  });
-  newUser.save()
-    .then(user => res.end(JSON.stringify({
-        success: 'Utilisateur enregistré avec succès'
-    })))
-    .catch(err => res.end(JSON.stringify({
-      error: 'Un problème est survenu lors de l\'inscription'
-    })));
+  User.register(newUser, password1)
+    .then(user => user.save())
+    .catch(err => res.json({
+      error: err.message
+    }))
+    .then(user => {
+      res.json({
+        success: 'Utilisateur enregistré avec succès',
+        payload: {
+          username: req.user.username,
+          accreditation: req.user.accreditation
+        }
+      });
+      return true;
+    });
 });
 
 // passport config
