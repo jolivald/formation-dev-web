@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 //import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -19,36 +19,44 @@ const createProps = index => ({
   'aria-controls': `simple-tabpanel-${index}`
 });
 
-
-const LoginDialog = () => {
-  const [value, setValue] = useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+const LoginDialog = ({
+    open,
+    tab,
+    labels,
+    loginRef,
+    registerRef,
+    onClose,
+    onChange,
+    onSubmit
+  }) => {
   return (
-    <Dialog open={true} aria-labelledby="form-dialog-title">
+    <Dialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby="form-dialog-title"
+    >
       <DialogTitle id="form-dialog-title" style={{ padding: 0 }}>
         <AppBar position="static">
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab label="Connection" {...createProps(0)} />
-            <Tab label="Inscription" {...createProps(1)} />
+          <Tabs value={tab} onChange={onChange} aria-label="simple tabs example">
+            <Tab label={labels[0]} {...createProps(0)} />
+            <Tab label={labels[1]} {...createProps(1)} />
           </Tabs>
         </AppBar>
       </DialogTitle>
       <DialogContent>
         
-        <TabPanel value={value} index={0}>
-          <LoginForm />
+        <TabPanel value={tab} index={0}>
+          <LoginForm ref={loginRef} />
         </TabPanel>
 
-        <TabPanel value={value} index={1}>
-          <RegisterForm />
+        <TabPanel value={tab} index={1}>
+          <RegisterForm ref={registerRef} />
         </TabPanel>
 
       </DialogContent>
       <DialogActions>
-        <Button color="primary">
-          Envoyer
+        <Button color="primary" onClick={onSubmit}>
+          {labels[tab]}
         </Button>
       </DialogActions>
     </Dialog>
