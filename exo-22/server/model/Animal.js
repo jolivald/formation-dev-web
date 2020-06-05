@@ -6,6 +6,7 @@ const AnimalSchema = new mongoose.Schema({
   name: String,
   race: String,
   age: Number,
+  type: String,
   owner: ObjectId,     // animal has one owner
   cares: [CareSchema], // animal has many cares
   geolocation: Boolean,

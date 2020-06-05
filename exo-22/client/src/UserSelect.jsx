@@ -14,8 +14,9 @@ const UserSelect = () => {
       return undefined;
     }
     (async () => {
-      const response = await fetch('/users');
+      const response = await fetch('/users', { credentials: 'include' });
       const result = await response.json();
+      console.log('result', result);
       if (active) {
         setOptions(result.payload);
       }
@@ -39,7 +40,7 @@ const UserSelect = () => {
       onClose={() => {
         setOpen(false);
       }}
-      getOptionSelected={(option, value) => option.username === value.name}
+      getOptionSelected={(option, value) => option.username === value.username}
       getOptionLabel={(option) => option.username}
       options={options}
       loading={loading}

@@ -1,0 +1,18 @@
+html, body, #root {
+  height: 100%;
+}
+#root {
+  background-color: red;
+  background: no-repeat url('images/stock_pets.jpg');
+  background-position: bottom center;
+  background-size: contain;
+}
+
+.visitor-view dd {
+  font-weight: bold;
+}
+.MuiListItem-container {
+  background: lightgray;
+  margin-bottom: 1em;
+  border-radius: .5em;
+}

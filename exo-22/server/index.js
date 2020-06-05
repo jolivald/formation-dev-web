@@ -19,6 +19,13 @@ const app = express();
 const port = 8081;
 const clientPath = path.join(__dirname, '../client/build');
 
+const isAuthenticated = (req, res, next) => {
+  if (req.user){ next(); }
+  else { res.json({
+    error: 'Vous n\'avez pas la permission d\'effectuer cette action'
+  }) }
+};
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
@@ -98,34 +105,52 @@ app.post('/register', (req, res, next) => {
 
 app.post(
   '/animal',
-  passport.authenticate('local', {
-    failureFlash: true
-  }),
+  isAuthenticated,
   (req, res) => {
-    const { name, age, race } = req.body;
-    const animal = new Animal({
-      name, race, age
+    const { name, age, race, owner, type } = req.body;
+    User.findOne({ username: owner }, (err, user) => {
+      if (err){
+        return res.json({ error: res.message });
+      }
+      user.animals.push({
+        name, race, age, type,
+        owner: user._id,
+        createdAt: Date.now(),
+        createdBy: req.user.username
+      });
+      /*const animal = new Animal({
+        name, race, age, type,
+        owner: user._id,
+        createdAt: Date.now(),
+        createdBy: req.user.username
+      });
+      animal*/
+      user.save()
+        .catch(err => res.json({
+          error: err.message 
+        }))
+        .then(() => res.json({
+          success: 'Animal enregistré avec succès'
+        }));
     });
-    animal.save()
-      .catch(err => res.json({
-        error: err.message
-      }))
-      .then(() => res.json({
-        success: 'Animal enregistré avec succès'
-      }));
+    
   }
 );
 
+app.get('/animals', isAuthenticated, (req, res) => {
+  const animals = req.user.animals.map(animal => animal.toJSON());
+  res.json(animals);
+});
+
 app.get(
   '/users',
-  passport.authenticate('local', {
-    failureFlash: true
-  }),
+  isAuthenticated,
   (req, res) => {
     User.find({}, (err, users) => {
       if (err){
         res.json({ error: err.message });
-      } else {
+      }
+      else {
         res.json({
           success: true,
           payload: users.map(user => ({
@@ -135,7 +160,6 @@ app.get(
         });
       }
     });
-
   }
 );
 

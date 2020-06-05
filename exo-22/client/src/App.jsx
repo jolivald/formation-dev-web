@@ -65,7 +65,7 @@ const App = () => {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      <Container maxWidth="md">
+      <Container maxWidth="sm" style={{ marginTop: '1em', backgroundColor: '#fff' }}>
         {cred === 0 && <VisitorView />}
         {cred === 1 && <UserView />}
         {cred === 2 && <AdminView />}

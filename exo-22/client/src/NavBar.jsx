@@ -3,11 +3,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
-import LockOpen from '@material-ui/icons/LockOpen';
-
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import Badge from '@material-ui/core/Badge';
+import PetsIcon from '@material-ui/icons/Pets';
 import MailIcon from '@material-ui/icons/Mail';
 
 /*
@@ -20,11 +20,14 @@ const NavBar = ({ buttonLabel, onClick, accreditation }) => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          <Link href="/" color="inherit">PetNet</Link>
+          <Button href="/" color="inherit">
+            <PetsIcon style={{ marginRight: '.5em' }}/>
+            PetNet
+          </Button>
         </Typography>
         {accreditation === 0 && (
           <Button onClick={onClick} color="inherit">
-            <LockOpen />
+            <LockOpenIcon />
             {buttonLabel}
           </Button>
         )}
@@ -33,7 +36,7 @@ const NavBar = ({ buttonLabel, onClick, accreditation }) => {
             <Badge badgeContent={2} color="secondary">Message</Badge>
           </Button>
           <Button href="/logout" color="inherit">
-            <LockOpen />
+            <ExitToAppIcon />
             Déconnexion
           </Button>
         </>)}

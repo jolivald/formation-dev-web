@@ -15,6 +15,7 @@ const AnimalForm = forwardRef((props, ref) => {
           labelId="animal-select-label"
           id="animal-select"
           name="type"
+          value="dog"
         >
           <MenuItem value="dog">Chien</MenuItem>
           <MenuItem value="cat">Chat</MenuItem>
