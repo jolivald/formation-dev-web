@@ -115,6 +115,30 @@ app.post(
       }));
   }
 );
+
+app.get(
+  '/users',
+  passport.authenticate('local', {
+    failureFlash: true
+  }),
+  (req, res) => {
+    User.find({}, (err, users) => {
+      if (err){
+        res.json({ error: err.message });
+      } else {
+        res.json({
+          success: true,
+          payload: users.map(user => ({
+            id: user._id,
+            username: user.username
+          }))
+        });
+      }
+    });
+
+  }
+);
+
 // passport config
 passport.use(User.createStrategy());
 //passport.use(new LocalStrategy(User.authenticate()));

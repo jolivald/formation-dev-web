@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 const { CareSchema } = require('./Care');
 
 const AnimalSchema = new mongoose.Schema({
   name: String,
   race: String,
   age: Number,
+  owner: ObjectId,     // animal has one owner
   cares: [CareSchema], // animal has many cares
   geolocation: Boolean,
   createdAt: Date,
