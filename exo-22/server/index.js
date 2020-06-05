@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./model/User');
+const Animal = require('./model/Animal');
 
 mongoose.connect('mongodb://mongo:27017', {
   useNewUrlParser: true,
@@ -62,7 +63,6 @@ app.get('/logout', (req, res) => {
 
 app.post('/register', (req, res, next) => {
   const { username, email, password1, password2 } = req.body;
-  res.setHeader('Content-Type', 'application/json');
   if (password1 !== password2){
     return res.json({
       error: 'Erreur de confirmation du mot de passe'
@@ -96,6 +96,25 @@ app.post('/register', (req, res, next) => {
     });
 });
 
+app.post(
+  '/animal',
+  passport.authenticate('local', {
+    failureFlash: true
+  }),
+  (req, res) => {
+    const { name, age, race } = req.body;
+    const animal = new Animal({
+      name, race, age
+    });
+    animal.save()
+      .catch(err => res.json({
+        error: err.message
+      }))
+      .then(() => res.json({
+        success: 'Animal enregistré avec succès'
+      }));
+  }
+);
 // passport config
 passport.use(User.createStrategy());
 //passport.use(new LocalStrategy(User.authenticate()));
