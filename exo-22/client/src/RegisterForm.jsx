@@ -9,7 +9,7 @@ const RegisterForm = forwardRef((props, ref) => {
         <TextField id="register-username" name="username" label="Nom d'utilisateur" />
       </FormGroup>
       <FormGroup>
-        <TextField id="register-email" name="email" label="Adresse email" />
+        <TextField id="register-email" name="email" type="email" label="Adresse email" />
       </FormGroup>
       <FormGroup>
         <TextField id="register-password1" name="password1" type="password" label="Mot de passe" />

@@ -44,7 +44,6 @@ const App = () => {
         : { error: 'Identifiants incorrects'}
       )
       .then(result => {
-        console.log(result);
         if (result.success){
           setCred(result.payload.accreditation);
           setOpen(false);

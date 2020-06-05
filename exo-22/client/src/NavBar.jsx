@@ -6,6 +6,10 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import LockOpen from '@material-ui/icons/LockOpen';
 
+
+import Badge from '@material-ui/core/Badge';
+import MailIcon from '@material-ui/icons/Mail';
+
 /*
 TODO:
  if logged => icon buttons profile & messages
@@ -25,8 +29,13 @@ const NavBar = ({ buttonLabel, onClick, accreditation }) => {
           </Button>
         )}
         {accreditation > 0 && (<>
-          <Button color="inherit">Messages</Button>
-          <Button href="/logout" color="inherit">Déconnexion</Button>
+          <Button color="inherit"><MailIcon />
+            <Badge badgeContent={2} color="secondary">Message</Badge>
+          </Button>
+          <Button href="/logout" color="inherit">
+            <LockOpen />
+            Déconnexion
+          </Button>
         </>)}
       </Toolbar>
     </AppBar>
