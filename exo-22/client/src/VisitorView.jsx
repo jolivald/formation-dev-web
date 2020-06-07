@@ -1,23 +1,13 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import mishka from './images/mishka_home.jpg';
 
 const VisitorView = () => {
   return (
     <div className="visitor-view">
-      <Typography variant="h6">Demonstration</Typography>
-      <p>Il y a deux comptes disponibles pour tester l'application.</p>
-      <dl>
-        <dt>Identifiant:</dt>
-        <dd>user</dd>
-        <dt>Mot de passe:</dt>
-        <dd>demo</dd>
-      </dl>
-      <dl>
-        <dt>Identifiant:</dt>
-        <dd>admin</dd>
-        <dt>Mot de passe:</dt>
-        <dd>demo</dd>
-      </dl>
+      <Typography variant="h6">Bienvenue sur PetNet</Typography>
+      <p>Grâce à cette application vous pouvez gérer tous ce qui concerne l'hébergement de vos animaux préférés.</p>
+      <img src={mishka} alt="deux beaux chiens" />
     </div>
   );
 };

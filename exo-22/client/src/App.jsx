@@ -13,6 +13,7 @@ import MessageReadView from './MessageReadView';
 import './App.css';
 
 const appViews = {
+  home: VisitorView,
   visitor: VisitorView,
   user: UserView,
   admin: AdminView,
@@ -20,6 +21,7 @@ const appViews = {
   animal: AnimalView,
   read: MessageReadView
 };
+const homes = [VisitorView, UserView, AdminView];
 
 const appReducer = (state, action) => {
   //console.log('ACTION', action.type, action.payload, 'STATE', state);
@@ -33,19 +35,13 @@ const appReducer = (state, action) => {
       return { ...state, dialogTab: action.payload };
     case 'LOGIN_USER':
       const { username, accreditation, messageCount } = action.payload;
-      let currentView;
-      switch (accreditation){
-        case 2: currentView = appViews.admin; break;
-        case 1: currentView = appViews.user;  break;
-        case 0:
-        default: currentView = appViews.visitor;
-      }
+      appViews.home = homes[accreditation];
       return {
         ...state,
         username,
         accreditation,
         messageCount,
-        currentView,
+        currentView: appViews.home,
         dialogOpen: false
       };
     case 'DECREMENT_MESSAGE_COUNT':

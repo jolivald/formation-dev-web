@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppContext } from './App';
 import fetch from 'cross-fetch';
-import { List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
+import { List, ListItem, ListItemText, ListItemAvatar, Avatar, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/Mail';
+import SearchIcon from '@material-ui/icons/Search';
 
 const MessageList = () => {
   const dispatch = useContext(AppContext);
@@ -41,6 +42,11 @@ const MessageList = () => {
                 primaryTypographyProps={{ style: { fontWeight: 'bold' }}}
               />)
             }
+            <ListItemSecondaryAction>
+              <IconButton onClick={() => handleClick(message)}>
+                <SearchIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
             
           </ListItem>
         );

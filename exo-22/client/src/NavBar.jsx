@@ -13,19 +13,28 @@ import MailIcon from '@material-ui/icons/Mail';
 
 import MessageView from './MessageView';
 
-const BaseNavbar = ({ children }) => (
-  <AppBar position="static">
-    <Toolbar>
-      <Typography variant="h6" style={{ flexGrow: 1 }}>
-        <Button href="/" color="inherit">
-          <PetsIcon style={{ marginRight: '.5em' }}/>
-          PetNet
-        </Button>
-      </Typography>
-      {children}
-    </Toolbar>
-  </AppBar>
-);
+const BaseNavbar = ({ children }) => {
+  const dispatch = useContext(AppContext);
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" style={{ flexGrow: 1 }}>
+          <Button
+            color="inherit"
+            onClick={() => dispatch({
+              type: 'SET_VIEW',
+              payload: { view: 'home', props: {} }
+            })}
+          >
+            <PetsIcon style={{ marginRight: '.5em' }}/>
+            PetNet
+          </Button>
+        </Typography>
+        {children}
+      </Toolbar>
+    </AppBar>
+  );
+  };
 
 const NavBar = ({ buttonLabel, onClick, accreditation, messageCount }) => {
   const dispatch = useContext(AppContext);

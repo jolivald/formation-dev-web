@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
+import fetch from 'cross-fetch';
 import { AppContext } from './App';
 import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
-import fetch from 'cross-fetch';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const MessageReadView = ({ message }) => {
   const dispatch = useContext(AppContext);
@@ -11,6 +12,7 @@ const MessageReadView = ({ message }) => {
       payload: { view: 'message', props: {} }
     });
   };
+  
   useEffect(() => {
     fetch('/read', {
       method: 'POST',
@@ -20,8 +22,13 @@ const MessageReadView = ({ message }) => {
       },
       body: JSON.stringify({ id: message._id })
     })
-      .then(() => dispatch({ type: 'DECREMENT_MESSAGE_COUNT' }));
+      .then(() => {
+        if (!message.viewed){
+          dispatch({ type: 'DECREMENT_MESSAGE_COUNT' });
+        }
+      });
   }, []);
+
   return (<>
     <Typography variant="h6">Consulter un message</Typography>
     <Card>
@@ -36,6 +43,7 @@ const MessageReadView = ({ message }) => {
           variant="contained"
           color="primary"
         >
+          <ArrowBackIcon />
           Retour
         </Button>
       </CardActions>

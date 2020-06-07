@@ -48,6 +48,7 @@ const AnimalView = ({ animal }) => {
         variant="contained"
         color="primary"
         onClick={handleClick}
+        style={{ marginTop: '2em' }}
       >
         <ArrowBackIcon/>
         Retour
