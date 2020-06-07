@@ -173,12 +173,13 @@ app.post(
   (req, res) => {
     const { _id, username } = req.user;
     const { title, content, receiver } = req.body;
-    User.findOne({ _id: receiver }, (err, user) => {
+    User.findOne({ username: receiver }, (err, user) => {
       if (err){
-        return res.json({ error: res.message });
+        return res.json({ error: err.message });
       }
       const message = new Message({
-        title, content,
+        title,
+        content,
         viewed: false,
         sender: _id,
         receiver: user._id,
