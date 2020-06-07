@@ -1,0 +1,20 @@
+html, body, #root {
+  height: 100%;
+}
+#root {
+  background-color: red;
+  background: no-repeat url('images/stock_pets.jpg');
+  background-position: bottom center;
+  background-size: contain;
+}
+.MuiContainer-root {
+  border: 1px solid lightgray;
+  border-radius: 1em;
+  padding: 1em 0 1em 0;
+}
+.MuiListItem-container,
+.MuiListItem-root {
+  background: lightgray;
+  margin-bottom: 1em;
+  border-radius: .5em;
+}

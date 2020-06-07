@@ -1,0 +1,13 @@
+{
+  "name": "petnet",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "author": "Jolivald Jonathan",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon ./server/index.js"
+  }
+}

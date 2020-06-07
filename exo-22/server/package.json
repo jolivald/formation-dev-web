@@ -1,0 +1,17 @@
+{
+  "name": "petnet-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jolivald Jonathan",
+  "license": "MIT",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.16",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.0.1"
+  }
+}
