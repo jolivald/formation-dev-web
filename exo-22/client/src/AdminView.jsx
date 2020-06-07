@@ -43,7 +43,7 @@ const AdminView = () => {
         : { error: 'Erreur lors de l\'enregistrement' }
       )
       .then(result => {
-        console.log('result', result);
+        //console.log('result', result);
         alert(result.success || result.error);
       });
   };

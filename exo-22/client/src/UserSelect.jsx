@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const UserSelect = () => {
+const UserSelect = ({ label, name }) => {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
@@ -33,6 +33,7 @@ const UserSelect = () => {
   return (
     <Autocomplete
       id="select-user"
+      name={name}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -47,10 +48,10 @@ const UserSelect = () => {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Propriétaire"
+          label={label}
           InputProps={{
             ...params.InputProps,
-            name: 'owner',
+            name,
             endAdornment: (
               <React.Fragment>
                 {loading ? <CircularProgress color="inherit" size={20} /> : null}

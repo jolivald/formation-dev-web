@@ -8,6 +8,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./model/User');
 const Animal = require('./model/Animal');
+const Message = require('./model/Message');
 
 mongoose.connect('mongodb://mongo:27017', {
   useNewUrlParser: true,
@@ -51,14 +52,17 @@ app.post(
     failureFlash: true
   }),
   (req, res) => {
-    const userDetail = {
-      username: req.user.username,
-      accreditation: req.user.accreditation
-    };
-    //res.cookie('user', userDetail);
-    res.json({
-      success: true,
-      payload: userDetail
+    Message.find({ receiver: req.user._id, viewed: false }, (err, messages) => {
+      const userDetail = {
+        username: req.user.username,
+        accreditation: req.user.accreditation,
+        messageCount: messages.length
+      };
+      //res.cookie('user', userDetail);
+      res.json({
+        success: true,
+        payload: userDetail
+      });
     });
   }
 );
@@ -110,7 +114,7 @@ app.post(
     const { name, age, race, owner, type } = req.body;
     User.findOne({ username: owner }, (err, user) => {
       if (err){
-        return res.json({ error: res.message });
+        return res.json({ error: err.message });
       }
       user.animals.push({
         name, race, age, type,
@@ -162,6 +166,64 @@ app.get(
     });
   }
 );
+
+app.post(
+  '/message',
+  isAuthenticated,
+  (req, res) => {
+    const { _id, username } = req.user;
+    const { title, content, receiver } = req.body;
+    User.findOne({ username: receiver }, (err, user) => {
+      if (err){
+        return res.json({ error: res.message });
+      }
+      const message = new Message({
+        title, content,
+        viewed: false,
+        sender: _id,
+        receiver: user._id,
+        createdAt: Date.now(),
+        createdBy: username 
+      });
+      message.save()
+        .catch(err => res.json({
+          error: err.message 
+        }))
+        .then(() => res.json({
+          success: 'Message envoyé avec succès'
+        }));
+    });
+  }
+);
+
+app.get('/messages', isAuthenticated, (req, res) => {
+  Message.find({ receiver: req.user._id }, (err, messages) => {
+    if (err){
+      return res.json({ error: res.message });
+    }
+    const data = messages.map(message => message.toJSON());
+    res.json({
+      success: true,
+      payload: data
+    });
+  });
+});
+
+app.post('/read', isAuthenticated, (req, res) => {
+  Message.findOne({ _id: req.body.id }, (err, message) => {
+    if (err){
+      return res.json({ error: err.message });
+    }
+    message.viewed = true;
+    message.save()
+    .catch(err => res.json({
+      error: err.message 
+    }))
+    .then(() => res.json({
+      success: true
+    }));
+  })
+});
 
 // passport config
 passport.use(User.createStrategy());

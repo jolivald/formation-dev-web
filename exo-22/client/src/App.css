@@ -11,7 +11,8 @@ html, body, #root {
 .visitor-view dd {
   font-weight: bold;
 }
-.MuiListItem-container {
+.MuiListItem-container,
+.MuiListItem-root {
   background: lightgray;
   margin-bottom: 1em;
   border-radius: .5em;

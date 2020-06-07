@@ -27,10 +27,9 @@ const BaseNavbar = ({ children }) => (
   </AppBar>
 );
 
-const NavBar = ({ buttonLabel, onClick, accreditation }) => {
+const NavBar = ({ buttonLabel, onClick, accreditation, messageCount }) => {
   const dispatch = useContext(AppContext);
   const handleClick = () => {
-    console.log('open message?');
     dispatch({
       type: 'SET_VIEW',
       payload: { view: 'message', props: {} }
@@ -41,7 +40,7 @@ const NavBar = ({ buttonLabel, onClick, accreditation }) => {
     case 1: return (
       <BaseNavbar>
         <Button color="inherit" onClick={handleClick}>
-          <Badge badgeContent={2} color="secondary">
+          <Badge badgeContent={messageCount} color="secondary">
             <MailIcon />
           </Badge>
         </Button>

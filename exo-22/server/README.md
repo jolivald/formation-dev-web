@@ -16,5 +16,11 @@ Démarrer le serveur de développement: `docker-compose up`
 | POST   | /login    | json         | json   |
 | POST   | /register | json         | json   |
 | POST   | /animal   | json         | json   |
+| GET    | /messages | json         | null   |
+| POST   | /message  | json         | json   |
+|        |           | json         | json   |
+|        |           | json         | json   |
+|        |           | json         | json   |
+|        |           | json         | json   |
 
 

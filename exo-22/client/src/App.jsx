@@ -8,6 +8,7 @@ import UserView from './UserView';
 import AdminView from './AdminView';
 import AnimalView from './AnimalView';
 import MessageView from './MessageView';
+import MessageReadView from './MessageReadView';
 
 import './App.css';
 
@@ -16,11 +17,12 @@ const appViews = {
   user: UserView,
   admin: AdminView,
   message: MessageView,
-  animal: AnimalView
+  animal: AnimalView,
+  read: MessageReadView
 };
 
 const appReducer = (state, action) => {
-  console.log('ACTION', action.type, action.payload, 'STATE', state);
+  //console.log('ACTION', action.type, action.payload, 'STATE', state);
   switch (action.type){
     case 'SET_VIEW':
       const { view, props } = action.payload;
@@ -30,7 +32,7 @@ const appReducer = (state, action) => {
     case 'SET_DIALOG_TAB':
       return { ...state, dialogTab: action.payload };
     case 'LOGIN_USER':
-      const { username, accreditation } = action.payload;
+      const { username, accreditation, messageCount } = action.payload;
       let currentView;
       switch (accreditation){
         case 2: currentView = appViews.admin; break;
@@ -42,9 +44,12 @@ const appReducer = (state, action) => {
         ...state,
         username,
         accreditation,
+        messageCount,
         currentView,
         dialogOpen: false
       };
+    case 'DECREMENT_MESSAGE_COUNT':
+      return { ...state, messageCount: state.messageCount - 1 };
     default:
       throw new Error('Invalid action');
   }
@@ -56,7 +61,8 @@ const appState = {
   dialogOpen: false,
   dialogTab: 0,
   currentView: VisitorView,
-  currentProps: {}
+  currentProps: {},
+  messageCount: 0
 };
 
 const AppContext = React.createContext(null);
@@ -67,7 +73,6 @@ const App = () => {
   const registerRef = useRef(null);
   const forms = [loginRef, registerRef];
   const labels = ['Connexion', 'Inscription'];
-  
   const apis = ['/login', '/register'];
   //const CurrentView = state.currentView;
   let { currentView: CurrentView } = state;
@@ -118,6 +123,7 @@ const App = () => {
         buttonLabel={labels[state.dialogTab]}
         onClick={handleClose}
         accreditation={state.accreditation}
+        messageCount={state.messageCount}
       />
       <LoginDialog
         {...{ labels, loginRef, registerRef }}
@@ -128,7 +134,7 @@ const App = () => {
         onSubmit={handleSubmit}
       />
       <Container maxWidth="sm" style={{ marginTop: '1em', backgroundColor: '#fff' }}>
-        <CurrentView {...state.currentProps} />
+        <CurrentView {...state.currentProps} accreditation={state.accreditation} />
       </Container>
     </AppContext.Provider>
   );

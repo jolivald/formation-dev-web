@@ -22,7 +22,7 @@ const AnimalForm = forwardRef((props, ref) => {
         </Select>
       </FormGroup>
       <FormGroup>
-        <UserSelect />
+        <UserSelect name="owner" label="Propriétaire" />
       </FormGroup>
       <FormGroup>
         <TextField id="register-username" name="name" label="Nom" />
