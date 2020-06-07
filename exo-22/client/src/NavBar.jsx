@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from './App';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,40 +11,55 @@ import Badge from '@material-ui/core/Badge';
 import PetsIcon from '@material-ui/icons/Pets';
 import MailIcon from '@material-ui/icons/Mail';
 
-/*
-TODO:
- if logged => icon buttons profile & messages
- else => button login/register
-*/
-const NavBar = ({ buttonLabel, onClick, accreditation, onClickMessage }) => {
-  return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
-          <Button href="/" color="inherit">
-            <PetsIcon style={{ marginRight: '.5em' }}/>
-            PetNet
-          </Button>
-        </Typography>
-        {accreditation === 0 && (
-          <Button onClick={onClick} color="inherit">
-            <LockOpenIcon style={{ marginRight: '.5em' }}/>
-            {buttonLabel}
-          </Button>
-        )}
-        {accreditation > 0 && (<>
-          <Button color="inherit" onClick={onClickMessage}>
-            <Badge badgeContent={2} color="secondary">
-              <MailIcon />
-            </Badge>
-          </Button>
-          <Button href="/logout" color="inherit">
-            <ExitToAppIcon />
-          </Button>
-        </>)}
-      </Toolbar>
-    </AppBar>
-  );
+import MessageView from './MessageView';
+
+const BaseNavbar = ({ children }) => (
+  <AppBar position="static">
+    <Toolbar>
+      <Typography variant="h6" style={{ flexGrow: 1 }}>
+        <Button href="/" color="inherit">
+          <PetsIcon style={{ marginRight: '.5em' }}/>
+          PetNet
+        </Button>
+      </Typography>
+      {children}
+    </Toolbar>
+  </AppBar>
+);
+
+const NavBar = ({ buttonLabel, onClick, accreditation }) => {
+  const dispatch = useContext(AppContext);
+  const handleClick = () => {
+    console.log('open message?');
+    dispatch({
+      type: 'SET_VIEW',
+      payload: { view: 'message', props: {} }
+    });
+  };
+  switch (accreditation){
+    case 2:
+    case 1: return (
+      <BaseNavbar>
+        <Button color="inherit" onClick={handleClick}>
+          <Badge badgeContent={2} color="secondary">
+            <MailIcon />
+          </Badge>
+        </Button>
+        <Button href="/logout" color="inherit">
+          <ExitToAppIcon />
+        </Button>
+      </BaseNavbar>
+    );
+    case 0:
+    default: return (
+      <BaseNavbar>
+        <Button onClick={onClick} color="inherit">
+          <LockOpenIcon style={{ marginRight: '.5em' }}/>
+          {buttonLabel}
+        </Button>
+      </BaseNavbar>
+    );
+  }
 };
 
 export default NavBar;
