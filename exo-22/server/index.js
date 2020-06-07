@@ -72,7 +72,7 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-app.post('/register', (req, res, next) => {
+app.post('/register', (req, res) => {
   const { username, email, password1, password2 } = req.body;
   if (password1 !== password2){
     return res.json({
@@ -224,6 +224,25 @@ app.post('/read', isAuthenticated, (req, res) => {
       success: true
     }));
   })
+});
+
+app.get('/setup', (req, res) => {
+  const newUser = new User({
+    username: 'admin',
+    email: 'admin@nospam.com',
+    password: 'demo',
+    accreditation: 2,
+    createdAt: Date.now(),
+    createdBy: 'admin'
+  });
+  User.register(newUser, 'demo')
+    .then(user => user.save())
+    .catch(err => {
+      res.end(err.message);
+    })
+    .then(() => {
+      res.redirect('/');
+    });
 });
 
 // passport config
