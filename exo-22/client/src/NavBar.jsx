@@ -15,7 +15,7 @@ TODO:
  if logged => icon buttons profile & messages
  else => button login/register
 */
-const NavBar = ({ buttonLabel, onClick, accreditation }) => {
+const NavBar = ({ buttonLabel, onClick, accreditation, onClickMessage }) => {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -27,17 +27,18 @@ const NavBar = ({ buttonLabel, onClick, accreditation }) => {
         </Typography>
         {accreditation === 0 && (
           <Button onClick={onClick} color="inherit">
-            <LockOpenIcon />
+            <LockOpenIcon style={{ marginRight: '.5em' }}/>
             {buttonLabel}
           </Button>
         )}
         {accreditation > 0 && (<>
-          <Button color="inherit"><MailIcon />
-            <Badge badgeContent={2} color="secondary">Message</Badge>
+          <Button color="inherit" onClick={onClickMessage}>
+            <Badge badgeContent={2} color="secondary">
+              <MailIcon />
+            </Badge>
           </Button>
           <Button href="/logout" color="inherit">
             <ExitToAppIcon />
-            Déconnexion
           </Button>
         </>)}
       </Toolbar>

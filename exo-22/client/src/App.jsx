@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import fetch from 'cross-fetch';
 import NavBar from './NavBar';
@@ -6,6 +6,7 @@ import LoginDialog from './LoginDialog';
 import VisitorView from './VisitorView';
 import UserView from './UserView';
 import AdminView from './AdminView';
+import MessageView from './MessageView';
 
 import './App.css';
 
@@ -18,6 +19,8 @@ const App = () => {
   const labels = ['Connexion', 'Inscription'];
   const forms = [loginRef, registerRef];
   const apis = ['/login', '/register'];
+  const views = [VisitorView, UserView, AdminView];
+  const [view, setView] = useState(views[cred]);
   const handleClose = () => {
     setOpen(!open);
   };
@@ -45,18 +48,25 @@ const App = () => {
       )
       .then(result => {
         if (result.success){
-          setCred(result.payload.accreditation);
+          const newCred = result.payload.accreditation;
+          setCred(newCred);
           setOpen(false);
+          // setView(views[newCred]);
         } else {
           alert(result.error);
         }
       });
+  };
+  const handleClick = (newView) => {
+    console.group('clicked');
+    setView(newView);
   };
   return (
     <div className="app">
       <NavBar
         buttonLabel={labels[tab]}
         onClick={handleClose}
+        onClickMessage={() => handleClick(MessageView) }
         accreditation={cred}
       />
       <LoginDialog
@@ -66,9 +76,8 @@ const App = () => {
         onSubmit={handleSubmit}
       />
       <Container maxWidth="sm" style={{ marginTop: '1em', backgroundColor: '#fff' }}>
-        {cred === 0 && <VisitorView />}
-        {cred === 1 && <UserView />}
-        {cred === 2 && <AdminView />}
+        {/* TODO dynamic view routing */}
+        {view}
       </Container>
     </div>
   );
