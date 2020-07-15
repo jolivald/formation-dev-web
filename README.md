@@ -27,4 +27,5 @@ Ce dépôt contient les exercices réalisés durant la formation.
  20. [ReactJS](exo-20)
  21. [Jeu de morpion](exo-21)
  22. [Pet.Net](exo-22)
+ 23. [Jeu de pendu](exo-23)
  
