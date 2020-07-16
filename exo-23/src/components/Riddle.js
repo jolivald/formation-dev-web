@@ -4,8 +4,7 @@ const computeDisplay = (phrase, usedLetters) => phrase.replace(
   /\w/g, letter => (usedLetters.includes(letter) ? letter : '_')
 );
 
-const Riddle = ({ state: { phrase, usedLetters }, dispatch }) => {
-  //const  = state;
+const Riddle = ({ state: { phrase, usedLetters } }) => {
   return (
     <div className="riddle">
       <pre>

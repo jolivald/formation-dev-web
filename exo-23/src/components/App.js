@@ -2,14 +2,25 @@ import React, { useReducer } from 'react';
 import Riddle from './Riddle';
 import Keyboard from './Keyboard';
 
+const initialState = {
+  phrase: 'i love javascript',
+  chars: 12,
+  attempts: 0,
+  found: 0,
+  usedLetters: []
+};
+
 const appReducer = (state, action) => {
-  console.log('reducer', action, state);
-  switch (action.type){
+  const { type, payload } = action;
+  switch (type){
     case 'TRY_LETTER':
+      const { phrase, attempts, found, usedLetters } = state;
       return {
         ...state,
+        attempts: attempts + 1,
+        found: found + (phrase.includes(payload) ? 1 : 0),
         usedLetters: [
-          ...state.usedLetters,
+          ...usedLetters,
           action.payload
         ]
       };
@@ -18,16 +29,15 @@ const appReducer = (state, action) => {
   }
 };
 
-const initialState = {
-  phrase: 'Hello world!',
-  usedLetters: []
-};
-
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
   return (<>
     <header>
       <h1>Jeu de pendu</h1>
+      {state.found === state.chars
+        ? (<p>Victoire!</p>)
+        : (<p>Nombre d'essais: {state.attempts}</p>)
+      }
       <hr />
     </header>
     <main>

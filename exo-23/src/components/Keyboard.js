@@ -2,8 +2,9 @@ import React from 'react';
 
 const alphabet = ('abcdefghijklmnopqrstuvwxyz').split('');
 
-const Keyboard = ({ state, dispatch }) => {
+const Keyboard = ({ dispatch }) => {
   const handleClick = function (letter, event){
+    event.target.disabled = true;
     dispatch({ type: 'TRY_LETTER', payload: letter });
   };
   return (
