@@ -1,0 +1,26 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+header {
+  margin: 2rem 0 3rem;
+}
+
+.riddle,
+.keyboard {
+  width: 50%;
+  float: left;
+}
+
+.riddle pre {
+  font-size: 1.5rem;
+  letter-spacing: 1ch;
+}
