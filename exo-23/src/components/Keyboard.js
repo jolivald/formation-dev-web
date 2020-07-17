@@ -2,9 +2,8 @@ import React from 'react';
 
 const alphabet = ('abcdefghijklmnopqrstuvwxyz').split('');
 
-const Keyboard = ({ dispatch }) => {
+const Keyboard = ({ state: { usedLetters }, dispatch }) => {
   const handleClick = function (letter, event){
-    event.target.disabled = true;
     dispatch({ type: 'TRY_LETTER', payload: letter });
   };
   return (
@@ -12,9 +11,10 @@ const Keyboard = ({ dispatch }) => {
       {alphabet.map((letter, index) => (
         <button
           key={ index }
+          disabled={ usedLetters.includes(letter) }
           onClick={ handleClick.bind(null, letter) }
         >
-          { letter }
+          { letter.toUpperCase() }
         </button>
       ))}
     </div>
