@@ -28,4 +28,4 @@ Ce dépôt contient les exercices réalisés durant la formation.
  21. [Jeu de morpion](exo-21)
  22. [Pet.Net](exo-22)
  23. [Jeu de pendu](exo-23)
- 
+ 24. [API symfony](exo-24)
