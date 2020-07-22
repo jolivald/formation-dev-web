@@ -29,3 +29,5 @@ Ce dépôt contient les exercices réalisés durant la formation.
  22. [Pet.Net](exo-22)
  23. [Jeu de pendu](exo-23)
  24. [API symfony](exo-24)
+ 25. [Vuejs client API](exo-25)
+ 
