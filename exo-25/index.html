@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vuejs client API</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="//unpkg.com/cross-fetch/dist/cross-fetch.js"></script>
+  <style>
+    body {
+      margin: 2rem 15%;
+    }
+    article {
+      margin: 0 0 2rem;
+    }
+    article h2,
+    section h3 {
+      border-bottom: 1px solid gray;
+    }
+    article section {
+      padding: 0 2rem;
+      border: 1px solid gray;
+      border-radius: 1rem;
+    }
+    .text-right {
+      text-align: right;
+      font-style: italic;
+      margin: -1rem 0 0 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vuejs client API</h1>
+  <hr />
+  <div id="app">
+    <article v-for="post in posts">
+      <h2>{{ post.title }}</h2>
+      <p class="text-right">{{ formatDate(post.createdAt) }}</p>
+      <p>{{ post.content }}</p>
+      <section v-for="com in post.comments">
+        <h3>{{ com.username }}</h3>
+        <p class="text-right">{{ formatDate(com.createdAt) }}</p>
+        <p>{{ com.content }}</p>
+      </section>
+    </article>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data() { return { pending: true, posts: [] } },
+      methods: {
+        formatDate: str => {
+          const date = new Date(str);
+          return `Posté le ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
+        }
+      },
+      mounted() {
+        fetch('http://127.0.0.1:8000/api/post')
+          .then(res => res.json())
+          .then(posts => {
+            this.pending = false;
+            this.posts = posts;
+          });
+      }
+    });
+  </script>
+</body>
+</html>
