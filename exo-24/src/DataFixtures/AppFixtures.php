@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Comment;
 use \DateTime;
 
 use App\Entity\Post;
@@ -23,16 +24,20 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 20; $i++) {
         
             $post = new Post();
-            
             $post->setTitle('Message n° '.$i);
-            
             $post->setContent('Cet article a été codé avec amour par Jonathan.');
-            
             $post->setCreatedAt($d);
-            
             $manager->persist($post);
             
+            $com = new Comment();
+            $com->setPost($post);
+            $com->setUsername('Yoloman');
+            $com->setContent('Commentaire super constructif!');
+            $com->setCreatedAt($d);
+            $manager->persist($com);
+
         }
+
 
         $manager->flush();
     }
