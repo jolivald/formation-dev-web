@@ -10,6 +10,12 @@
     body {
       margin: 2rem 15%;
     }
+    form {
+      margin: 1rem 0;
+    }
+    form div {
+      margin-bottom: 1rem;;
+    }
     article {
       margin: 0 0 2rem;
     }
@@ -31,8 +37,22 @@
 </head>
 <body>
   <h1>Vuejs client API</h1>
-  <hr />
   <div id="app">
+    <button v-on:click="handleClick">
+      {{ creating ? "Fermer le formulaire" : "Ajouter un article" }}
+    </button>
+    <form v-if="creating">
+      <div>
+        <input type="text" id="title" placeholder="Titre" v-model="title"/>
+      </div>
+      <div>
+        <textarea id="content" placeholder="Contenu" v-model="content"></textarea>
+      </div>
+      <div>
+        <button v-on:click="handleSubmit">Envoyer</button>
+      </div>
+    </form>
+    <hr />
     <article v-for="post in posts">
       <h2>{{ post.title }}</h2>
       <p class="text-right">{{ formatDate(post.createdAt) }}</p>
@@ -47,8 +67,40 @@
   <script>
     const app = new Vue({
       el: '#app',
-      data() { return { pending: true, posts: [] } },
+      data: {
+        pending: true,
+        creating: false,
+        posts: [],
+        title: '',
+        content: ''
+      },
       methods: {
+        handleClick: function(event) {
+          this.creating = !this.creating;
+        },
+        handleSubmit: function(event) {
+          event.preventDefault();
+          const { title, content } = this;
+          fetch('http://127.0.0.1:8000/api/post', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, content })
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.detail){ alert(data.detail); }
+              else {
+                this.title   = '';
+                this.content = '';
+                this.creating = false;
+                this.posts.unshift(data);
+                alert('Article enregistré avec l\'identifiant ' + data.id);
+              }
+            });
+        },
         formatDate: str => {
           const date = new Date(str);
           return `Posté le ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`

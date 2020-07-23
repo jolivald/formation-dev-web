@@ -38,7 +38,7 @@ class ApiController extends AbstractController
             $post = $serializer->deserialize($json, Post::class, 'json');
             $post->setCreatedAt(new \DateTime());
             $errors = $validator->validate($post);
-            if (!empty($errors)){
+            if (count($errors) > 0){
                 return $this->json($errors, 400);
             }
             $em->persist($post);
