@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+ <title>Babylon - La Base</title>
+ <!--- Link to the last version of BabylonJS -->
+ <script src="https://cdn.babylonjs.com/babylon.js"></script>
+ <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+ <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+ <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+ <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+ <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+ <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+ <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+ <script src="https://preview.babylonjs.com/nodeEditor/babylon.nodeEditor.js"></script>
+ <style>
+ html, body {
+ overflow: hidden;
+ width : 100%;
+ height : 100%;
+ margin : 0;
+ padding : 0;
+ }
+ 
+ #renderCanvas {
+ width : 100%;
+ height : 100%;
+ touch-action: none;
+ }
+ </style>
+ </head>
+ <body>
+ <canvas id="renderCanvas"></canvas>
+ <script>
+ window.addEventListener('DOMContentLoaded', function(){
+   alert('Appuyer sur la barre d\'espace pour changer de caméra.');
+   
+ // ciblage de l'élément DOM canvas
+ var canvas = document.getElementById('renderCanvas');
+ 
+ // chargement du moteur 3D
+ var engine = new BABYLON.Engine(canvas, true);
+ 
+ // createScene est une fonction charger de retourner la scène
+ var createScene = function(){
+ // creation d'une scène Babylon basique
+ var scene = new BABYLON.Scene(engine);
+
+ // creation d'une FreeCamera, et définition de sa position à (x:0, y:5, z:-10)
+ var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
+ //var camera2 = new BABYLON.FreeCamera('camera2', new BABYLON.Vector3(0, 5,-10), scene);
+ var camera2 = new BABYLON.UniversalCamera("camera2", new BABYLON.Vector3(0, 10, -10), scene);
+ 
+ // Définition du focus de la camera au point d'origine de la scène
+ camera.setTarget(BABYLON.Vector3.Zero());
+ camera2.setTarget(BABYLON.Vector3.Zero());
+ 
+ // attachement du contrôle de la caméra à la scène
+ camera.attachControl(canvas, false);
+ 
+ // creation d'une lumière de base , normes du vecteur 0,1,0 signifie vers le ciel 
+ var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
+ 
+ // creation d'une forme sphérique; Le constructeur prends 6 paramètres: name, segment, diameter, scene, updatable, sideOrientation 
+ var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
+ 
+ // Déplacer la sphere d'un sur l'axe y (le rayon de la sphere)
+ sphere.position.y = 1;
+ 
+ // Crée et applique la couleur rouge à la sphere
+ var sphereMaterial = new BABYLON.StandardMaterial("red_sphere", scene);
+ sphereMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
+ sphere.material = sphereMaterial;
+
+ // Crée le cube
+ var cube = BABYLON.Mesh.CreateBox("cube1", 2, scene);
+ cube.position.y = 3.7;
+ cube.rotation.x = Math.PI / 4;
+ cube.rotation.z = Math.PI / 4;
+
+  // Create material from image with alpha
+  var cubeTexture = new BABYLON.StandardMaterial("stone", scene);
+  cubeTexture.emissiveTexture = cubeTexture.diffuseTexture = new BABYLON.Texture("./stone.jpg", scene);
+  cube.material = cubeTexture;
+
+ // creation du sol;
+ var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
+ 
+ // retour de la scène créée
+ return scene;
+ }
+
+ // appelle à la fonction 
+ var scene = createScene();
+
+  // fonction permettant de changer de camera
+  var cams = [
+    scene.getCameraByID('camera1'),
+    scene.getCameraByID('camera2')
+  ];
+  var changeCamera = function() {
+    //var cams = scene.activeCameras;
+    var newCam = scene.activeCamera === cams[0] ? cams[1] : cams[0];
+    scene.activeCamera.detachControl(canvas);
+    scene.activeCamera = newCam;
+    scene.activeCamera.attachControl(canvas, false);
+  };
+
+  scene.onKeyboardObservable.add((kbInfo) => {
+    switch (kbInfo.type) {
+        // case BABYLON.KeyboardEventTypes.KEYDOWN:
+        //     console.log("KEY DOWN: ", kbInfo.event.key);
+        //     break;
+        case BABYLON.KeyboardEventTypes.KEYUP:
+            console.log("KEY UP: ", kbInfo.event.keyCode);
+            if (kbInfo.event.keyCode === 32){ // barre d'espace
+              changeCamera();
+              break;
+            }
+    }
+  });
+  // anime la rotation du cube
+  var cube = scene.getMeshByID('cube1');
+  scene.registerBeforeRender(function () {
+    cube.rotation.y += 0.01;
+  });
+
+ // démarrage de la boucle de rendu
+ engine.runRenderLoop(function(){
+ scene.render();
+ });
+ 
+ // L'écouteur d'évènement redimensionnement de la fenêtre et adaptation du moteur de rendu
+ window.addEventListener('resize', function(){
+ engine.resize();
+ });
+ });
+ </script>
+ </body>
+</html>
+<!--
+ Défi n°1: La sphère doit être de couleur rouge
+ Défi n°2: Positionner un cube au dessus de la sphère dont les côtés ont une longueur égale au diamètre de la sphère
+ Défi n°3: Le cube doit être en rotation perpétuelle sur l'axe x juste au dessus de la sphère
+ (un coin du cube doit pointer sur la sphère)
+ Défi n°4: Apporter une texture au cube grâce à une image
+ Défi n°5: Déclarer une caméra supplémentaire
+ Défi n°6: Déclarer une fonction qui permette de basculer l'affichage d'une caméra à l'autre
+-->
+ 
+<!--
+ OpenGL est un ensemble normalisé de fonctions de calcul d'images 2D ou 3D lancé par Silicon Graphics en 1992. 
+ Cette interface de programmation est disponible sur de nombreuses plateformes où elle est utilisée pour des 
+ applications qui vont du jeu vidéo jusqu'à la CAO en passant par la modélisation.
+ (on trouve également OpenCl DirectX Vulcan OpenCV)
+ 
+ WebGL est une spécification d'interface de programmation de 3D dynamique pour les pages et 
+ applications HTML5 créée par le Khronos Group.
+ 
+-->

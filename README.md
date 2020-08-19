@@ -30,4 +30,6 @@ Ce dépôt contient les exercices réalisés durant la formation.
  23. [Jeu de pendu](exo-23)
  24. [API symfony](exo-24)
  25. [Vuejs client API](exo-25)
+ 26. [TD login register](exo-26)
+ 27. [WebGL](exo-27)
  
